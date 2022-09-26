@@ -31,15 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Shotgun",
-                    "type": "PassThrough",
-                    "id": "12fd6387-bbda-4aaf-9aed-973a47e8984a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -117,17 +108,6 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1aec98a7-870a-47c7-8ce4-e293b2d2265b",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Shotgun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
