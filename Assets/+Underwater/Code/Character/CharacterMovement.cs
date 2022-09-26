@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace UTS
+namespace FlamingApes.Underwater
 {
     public class CharacterMovement : MonoBehaviour
     {
