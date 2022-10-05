@@ -40,15 +40,17 @@ namespace FlamingApes.Underwater
 
             //If gamepad is active and sensing input from stick controller aim with right controller
             //if (isGamepad && rightStickInput.magnitude > 0.0f)
-            if (isGamepadActive && input.magnitude > 0.0f)
+            if (isGamepadActive)
             {
                 //Right stick input reading for rotation
                 var gamepad = Gamepad.current;
                 Vector3 rightStickInput = gamepad.rightStick.ReadValue();
-
-                float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
-                rb2D.rotation = angleToLook;
-                Debug.Log("Gamepad active");
+                if (rightStickInput.sqrMagnitude > Mathf.Epsilon)
+                {
+                    float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
+                    rb2D.rotation = angleToLook;
+                    Debug.Log("Gamepad active");
+                }
             }
             //if no gamepad active use mouse to aim to mouses current position
             else
