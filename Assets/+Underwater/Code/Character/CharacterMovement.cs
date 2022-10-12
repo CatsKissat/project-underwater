@@ -39,7 +39,6 @@ namespace FlamingApes.Underwater
             transform.Translate(input * movementSpeed * Time.deltaTime, Space.World);
 
             //If gamepad is active and sensing input from stick controller aim with right controller
-            //if (isGamepad && rightStickInput.magnitude > 0.0f)
             if (isGamepadActive)
             {
                 //Right stick input reading for rotation

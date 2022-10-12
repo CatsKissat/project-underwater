@@ -8,11 +8,12 @@ namespace FlamingApes.Underwater
     public class PlayerAttack : MonoBehaviour
     {
         //shooting related references solely for PlayerCharacter
-
-        public GameObject projectile;
+        [SerializeField]
+        private GameObject projectile;
 
         //firePoint is empty gameobject, which is placed in parent object and works as point of bullets origin
-        public Transform firePoint;
+        [SerializeField]
+        private Transform firePoint;
         //boolean for shooting cooldown and amount cooldown is active
         private bool canAttack = true;
 

@@ -6,26 +6,20 @@ namespace FlamingApes.Underwater
 {
     public class Projectile : MonoBehaviour
     {
-
-        public GameObject bullet;
-        public new Rigidbody2D rigidbody2D;
+        
+        [SerializeField]
+        private Rigidbody2D rb2D;
 
         [SerializeField]
-        float fireForce = 20;
+        float fireForce = 20f;
 
         [SerializeField]
         float lifeTime = 2;
 
-
-        // Start is called before the first frame update
-        void FixedUpdate()
-        {
-            bullet.GetComponent<Rigidbody2D>().AddForce(transform.up * (fireForce * Time.deltaTime), ForceMode2D.Impulse);
-        }
-
         private void OnEnable()
         {
-            Invoke("Destroy", lifeTime);
+            rb2D.AddForce(transform.up * fireForce, ForceMode2D.Impulse);
+            Invoke(nameof(Destroy), lifeTime);
         }
 
         private void Destroy()

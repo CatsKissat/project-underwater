@@ -98,9 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6161d926f59372a40b90037d98559d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 6428361003673664026}
-  rigidbody2D: {fileID: 8513508251082109952}
-  fireForce: 136.78
+  rb2D: {fileID: 8513508251082109952}
+  fireForce: 25.83
   lifeTime: 5
 --- !u!50 &8513508251082109952
 Rigidbody2D:

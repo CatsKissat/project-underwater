@@ -7,10 +7,17 @@ namespace FlamingApes.Underwater
     public class ObjectPool : MonoBehaviour
     {
         // Start is called before the first frame update
+        
         public static ObjectPool SharedInstance;
-        public List<GameObject> pooledObjects;
-        public GameObject objectToPool;
-        public int amountToPool;
+
+        [SerializeField]
+        private List<GameObject> pooledObjects;
+
+        [SerializeField]
+        private GameObject objectToPool;
+
+        [SerializeField]
+        private int amountToPool;
 
         void Awake()
         {
