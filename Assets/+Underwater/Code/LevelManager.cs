@@ -11,6 +11,7 @@ namespace FlamingApes.Underwater
 
         [SerializeField] private GameObject roomPrefab;
         [SerializeField] private int roomCount;
+        [SerializeField] private List<GameObject> adjacentRoomSlots;
 
 #if UNITY_EDITOR
         [Header("Debug")]
@@ -49,6 +50,11 @@ namespace FlamingApes.Underwater
                 await Task.Delay(delay);
 #endif
 
+                Debug.Log("GenerateLevel: " + (i + 1) + ". " + name);
+
+                // Set next room's Z position for Raycast check.
+                spawnPoint.position += new Vector3(0, 0, -i);
+
                 // Instantiate room from prefab
                 var tempRoom = Instantiate(roomPrefab, spawnPoint.position, Quaternion.identity);
 
@@ -59,9 +65,26 @@ namespace FlamingApes.Underwater
                 tempRoom.transform.parent = level.transform;
 
                 // Initialize room
-                Debug.Log(i + " starting to initialize");
-                tempRoom.GetComponent<RoomManager>().InitializeRoom();
-                Debug.Log(i + " room initialized");
+                //Debug.Log((i + 1) + ". room spawned.");
+                RoomManager currentRoomManager = tempRoom.GetComponent<RoomManager>();
+                currentRoomManager.InitializeRoom();
+                Debug.Log((i + 1) + ". room initialized completed");
+
+                Debug.Log((i + 1) + ". Add available room spots to a List.");
+                for ( int j = 0; j < currentRoomManager.GetAdjacentRoomSpotsLength(); j++ )
+                {
+                    adjacentRoomSlots.Add(currentRoomManager.GetAdjacentRoomSpot(j));
+                    Debug.LogWarning((i + 1) + ". added: " + currentRoomManager.GetAdjacentRoomSpot(j).name); 
+                }
+
+            }
+            if ( level.transform.childCount == roomCount )
+            {
+                Debug.Log("All rooms spawned, great job!");
+            }
+            else
+            {
+                Debug.LogError("For some reason not all room weren't instantiated!");
             }
         }
 
