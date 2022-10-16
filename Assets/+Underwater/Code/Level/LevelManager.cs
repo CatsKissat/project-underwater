@@ -67,7 +67,6 @@ namespace FlamingApes.Underwater
 
                 // Initialize room
                 currentRoomManager.InitializeRoom();
-                currentRoomManager.InitializeRoom();
 
                 // Add available room slots to a list.
                 for ( int j = 0; j < currentRoomManager.GetAdjacentRoomSpotsLength(); j++ )
