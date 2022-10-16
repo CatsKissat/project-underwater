@@ -20,11 +20,12 @@ namespace FlamingApes.Underwater
 #endif
 
         private Transform spawnPoint;
+        private List<GameObject> rooms;
 
         private void Awake()
         {
             InitializeInstance();
-            InitializeSpawnPoint();
+            //InitializeSpawnPoint();
         }
         private async void Start()
         {
@@ -46,17 +47,14 @@ namespace FlamingApes.Underwater
             for ( int i = 0; i < roomCount; i++ )
             {
 #if UNITY_EDITOR
-                // Debug. Delay Spawning so user can see spawned rooms one by one.
                 await Task.Delay(delay);
 #endif
 
-                Debug.Log("GenerateLevel: " + (i + 1) + ". " + name);
-
-                // Set next room's Z position for Raycast check.
-                spawnPoint.position += new Vector3(0, 0, -i);
+                // TODO: Use rooms[i] instead of tempRoom.
 
                 // Instantiate room from prefab
-                var tempRoom = Instantiate(roomPrefab, spawnPoint.position, Quaternion.identity);
+                //GameObject tempRoom = Instantiate(roomPrefab, spawnPoint.position, Quaternion.identity);
+                GameObject tempRoom = Instantiate(roomPrefab, SetSpawnPoint(i).position, Quaternion.identity);
 
                 // Add number to it's name.
                 tempRoom.name += "(" + (i + 1) + ")";
@@ -65,18 +63,13 @@ namespace FlamingApes.Underwater
                 tempRoom.transform.parent = level.transform;
 
                 // Initialize room
-                //Debug.Log((i + 1) + ". room spawned.");
                 RoomManager currentRoomManager = tempRoom.GetComponent<RoomManager>();
                 currentRoomManager.InitializeRoom();
-                Debug.Log((i + 1) + ". room initialized completed");
 
-                Debug.Log((i + 1) + ". Add available room spots to a List.");
                 for ( int j = 0; j < currentRoomManager.GetAdjacentRoomSpotsLength(); j++ )
                 {
                     adjacentRoomSlots.Add(currentRoomManager.GetAdjacentRoomSpot(j));
-                    Debug.LogWarning((i + 1) + ". added: " + currentRoomManager.GetAdjacentRoomSpot(j).name); 
                 }
-
             }
             if ( level.transform.childCount == roomCount )
             {
@@ -86,16 +79,46 @@ namespace FlamingApes.Underwater
             {
                 Debug.LogError("For some reason not all room weren't instantiated!");
             }
+
+            // TODO: Use rooms[i] instead of roomCount.
+            for ( int i = 0; i < roomCount; i++ )
+            {
+                // Set room's Z axis to zero. Not necessary, but looks better when viewing the level in 3D in editor :)
+                //tempRoom.transform.position = new Vector3(tempRoom.transform.position.x, tempRoom.transform.position.y, 0.0f);
+            }
         }
 
-        private void InitializeSpawnPoint()
+        private Transform SetSpawnPoint(int index)
         {
-            spawnPoint = transform.GetChild(0);
+            // TODO: Get rid of if else and make one adjacentRoomSlots for the first room. Delete point after using it.
+            if ( index == 0 )
+            {
+                spawnPoint = transform.GetChild(0);
+            }
+            else
+            {
+                int randomIndex = (int)Random.Range(0, adjacentRoomSlots.Count);
+                spawnPoint = adjacentRoomSlots[randomIndex].transform;
+            }
             if ( spawnPoint == null )
             {
                 Debug.LogError(name + "'s " + nameof(roomPrefab) + " variable is null. Can't spawn rooms without of it!");
             }
+
+            // Set next room's Z position for Raycast check.
+            spawnPoint.position += new Vector3(0, 0, -1);
+
+            return spawnPoint;
         }
+
+        //private void InitializeSpawnPoint()
+        //{
+        //    spawnPoint = transform.GetChild(0);
+        //    if ( spawnPoint == null )
+        //    {
+        //        Debug.LogError(name + "'s " + nameof(roomPrefab) + " variable is null. Can't spawn rooms without of it!");
+        //    }
+        //}
 
         private void InitializeInstance()
         {
