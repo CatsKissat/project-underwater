@@ -20,7 +20,7 @@ namespace FlamingApes.Underwater
 #endif
 
         private Transform spawnPoint;
-        private List<GameObject> rooms;
+        private List<GameObject> rooms = new List<GameObject>();
 
         private void Awake()
         {
@@ -39,38 +39,44 @@ namespace FlamingApes.Underwater
 #endif
         }
 
+        // TODO: Remove async when level generating 
         private async Task GenerateLevel()
         {
-            // Create Level GameObject for the level.
+            // Create Level GameObject for the level in Hierarchy.
             GameObject level = new GameObject("Level");
 
             for ( int i = 0; i < roomCount; i++ )
             {
 #if UNITY_EDITOR
+                // Add delay to see floor by floor level spawning.
                 await Task.Delay(delay);
 #endif
 
-                // TODO: Use rooms[i] instead of tempRoom.
-
                 // Instantiate room from prefab
-                //GameObject tempRoom = Instantiate(roomPrefab, spawnPoint.position, Quaternion.identity);
-                GameObject tempRoom = Instantiate(roomPrefab, SetSpawnPoint(i).position, Quaternion.identity);
+                rooms.Add(Instantiate(roomPrefab, SetSpawnPoint(i).position, Quaternion.identity));
 
                 // Add number to it's name.
-                tempRoom.name += "(" + (i + 1) + ")";
+                rooms[i].name += "(" + (i + 1) + ")";
 
                 // Set room to child of the Level GameObject.
-                tempRoom.transform.parent = level.transform;
+                rooms[i].transform.parent = level.transform;
+
+                // TODO: Check is there space in adjacentRoomSlots or not
+
+                RoomManager currentRoomManager = rooms[i].GetComponent<RoomManager>();
 
                 // Initialize room
-                RoomManager currentRoomManager = tempRoom.GetComponent<RoomManager>();
+                currentRoomManager.InitializeRoom();
                 currentRoomManager.InitializeRoom();
 
+                // Add available room slots to a list.
                 for ( int j = 0; j < currentRoomManager.GetAdjacentRoomSpotsLength(); j++ )
                 {
                     adjacentRoomSlots.Add(currentRoomManager.GetAdjacentRoomSpot(j));
                 }
             }
+
+            // Debug message for room spawning
             if ( level.transform.childCount == roomCount )
             {
                 Debug.Log("All rooms spawned, great job!");
@@ -80,11 +86,10 @@ namespace FlamingApes.Underwater
                 Debug.LogError("For some reason not all room weren't instantiated!");
             }
 
-            // TODO: Use rooms[i] instead of roomCount.
-            for ( int i = 0; i < roomCount; i++ )
+            for ( int i = 0; i < rooms.Count; i++ )
             {
                 // Set room's Z axis to zero. Not necessary, but looks better when viewing the level in 3D in editor :)
-                //tempRoom.transform.position = new Vector3(tempRoom.transform.position.x, tempRoom.transform.position.y, 0.0f);
+                rooms[i].transform.position += new Vector3(0.0f, 0.0f, i);
             }
         }
 
