@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 6985194427063502672}
   - component: {fileID: 6985194427063502673}
   - component: {fileID: 8238870903815757411}
+  - component: {fileID: 3506446705986181861}
   - component: {fileID: 7687875354584237979}
   - component: {fileID: 6326927248400037156}
   - component: {fileID: 7178324115821248196}
@@ -138,6 +139,18 @@ MonoBehaviour:
   main: {fileID: 0}
   isGamepadActive: 0
   movementSpeed: 1
+--- !u!114 &3506446705986181861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985194427063502674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9329acc381d20f049ba6f0973c19921c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7687875354584237979
 MonoBehaviour:
   m_ObjectHideFlags: 0
