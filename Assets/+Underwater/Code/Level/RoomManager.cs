@@ -9,33 +9,12 @@ namespace FlamingApes.Underwater
         [SerializeField] private List<GameObject> adjacentRoomSpots;
         [SerializeField] private List<GameObject> adjacentRooms;
 
-        public void InitializeCoroutine()
-        {
-            InitializeRoom();
-        }
-
         public void InitializeRoom()
         {
-
-            Debug.Log(name + " Initializing room before yield");
-
-            //yield return null;
-
-            //Debug.Log(name + " Initializing room after yield");
-
-            // Enable List of AdjacentSpawnPoints.
-            for ( int i = 0; i < adjacentRoomSpots.Count; i++ )
-            {
-                adjacentRoomSpots[i].SetActive(true);
-            }
-
-            // If AdjacentSpawnPoint collides with a another room, put it to a List of adjacentRooms.
+            // If AdjacentSpawnPoint's raycast collides with a another room, put it to a List of adjacentRooms.
             for ( int i = (adjacentRoomSpots.Count - 1); i > -1; i-- )
             {
                 bool isAdjacentSpotFree = adjacentRoomSpots[i].GetComponent<CheckForRoomSpace>().CastCheckingRay();
-                // TODO: Cast raycast check for all the old rooms too.
-                // TODO: Set adjacentToomSpots to to adjacentRooms if there is a room.
-                Debug.Log(name + ", " + adjacentRoomSpots[i] + ", is spot free: " + isAdjacentSpotFree);
                 if ( !isAdjacentSpotFree )
                 {
                     adjacentRooms.Add(adjacentRoomSpots[i]);
@@ -43,11 +22,10 @@ namespace FlamingApes.Underwater
                 }
             }
 
+            // Add available room slots to a list.
             for ( int i = 0; i < adjacentRoomSpots.Count ; i++ )
             {
-                Debug.Log("LevelManager adjacentRoomSpots before adding: " + LevelManager.Instance.adjacentRoomSlots.Count);
                 LevelManager.Instance.adjacentRoomSlots.Add(adjacentRoomSpots[i]);
-                Debug.Log("LevelManager adjacentRoomSpots after adding: " + LevelManager.Instance.adjacentRoomSlots.Count);
             }
         }
 

@@ -52,21 +52,16 @@ namespace FlamingApes.Underwater
                 await Task.Delay(delay);
 #endif
 
-                Debug.Log("Generating level: " + i);
-
                 // Instantiate room from prefab
                 rooms.Add(Instantiate(roomPrefab, SetSpawnPoint(i).position, Quaternion.identity));
 
                 // Add number to it's name.
                 rooms[i].name += "(" + (i + 1) + ")";
 
-                Debug.LogError("A new room spawned [_" + rooms[i].name + "_]");
-
                 // Set room to child of the Level GameObject.
                 rooms[i].transform.parent = level.transform;
 
-                // TODO: Check is there space in adjacentRoomSlots or not
-
+                // Empty adjacentRoomSlots because recreating it later again
                 adjacentRoomSlots.Clear();
 
                 for ( int k = 0; k < rooms.Count; k++ )
@@ -74,14 +69,7 @@ namespace FlamingApes.Underwater
                     RoomManager currentRoomManager = rooms[k].GetComponent<RoomManager>();
 
                     // Initialize room
-                    currentRoomManager.InitializeCoroutine();
-
-                    //// Add available room slots to a list.
-                    //for ( int j = 0; j < currentRoomManager.GetAdjacentRoomSpotsLength(); j++ )
-                    //{
-                    //    Debug.Log("Adding [" + currentRoomManager.GetAdjacentRoomSpot(j) + "] spot to empty slots");
-                    //    adjacentRoomSlots.Add(currentRoomManager.GetAdjacentRoomSpot(j));
-                    //} 
+                    currentRoomManager.InitializeRoom();
                 }
             }
 
@@ -94,12 +82,6 @@ namespace FlamingApes.Underwater
             {
                 Debug.LogError("For some reason not all room weren't instantiated!");
             }
-
-            //for ( int i = 0; i < rooms.Count; i++ )
-            //{
-            //    // Set room's Z axis to zero. Not necessary, but looks better when viewing the level in 3D in editor :)
-            //    rooms[i].transform.position += new Vector3(0.0f, 0.0f, i);
-            //}
         }
 
         private Transform SetSpawnPoint(int index)
@@ -118,21 +100,8 @@ namespace FlamingApes.Underwater
             {
                 Debug.LogError(name + "'s " + nameof(roomPrefab) + " variable is null. Can't spawn rooms without of it!");
             }
-
-            // Set next room's Z position for Raycast check.
-            //spawnPoint.position += new Vector3(0, 0, -1);
-
             return spawnPoint;
         }
-
-        //private void InitializeSpawnPoint()
-        //{
-        //    spawnPoint = transform.GetChild(0);
-        //    if ( spawnPoint == null )
-        //    {
-        //        Debug.LogError(name + "'s " + nameof(roomPrefab) + " variable is null. Can't spawn rooms without of it!");
-        //    }
-        //}
 
         private void InitializeInstance()
         {
