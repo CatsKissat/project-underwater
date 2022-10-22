@@ -11,7 +11,7 @@ namespace FlamingApes.Underwater
 
         [SerializeField] private GameObject roomPrefab;
         [SerializeField] private int roomCount;
-        [SerializeField] private List<GameObject> adjacentRoomSlots;
+        [SerializeField] internal List<GameObject> adjacentRoomSlots;
 
 #if UNITY_EDITOR
         [Header("Debug")]
@@ -52,13 +52,15 @@ namespace FlamingApes.Underwater
                 await Task.Delay(delay);
 #endif
 
+                Debug.Log("Generating level: " + i);
+
                 // Instantiate room from prefab
                 rooms.Add(Instantiate(roomPrefab, SetSpawnPoint(i).position, Quaternion.identity));
 
-                Debug.LogError("A new room spawned [_" + rooms[i].name + "_]");
-
                 // Add number to it's name.
                 rooms[i].name += "(" + (i + 1) + ")";
+
+                Debug.LogError("A new room spawned [_" + rooms[i].name + "_]");
 
                 // Set room to child of the Level GameObject.
                 rooms[i].transform.parent = level.transform;
@@ -72,14 +74,14 @@ namespace FlamingApes.Underwater
                     RoomManager currentRoomManager = rooms[k].GetComponent<RoomManager>();
 
                     // Initialize room
-                    currentRoomManager.InitializeRoom();
+                    currentRoomManager.InitializeCoroutine();
 
-                    // Add available room slots to a list.
-                    for ( int j = 0; j < currentRoomManager.GetAdjacentRoomSpotsLength(); j++ )
-                    {
-                        Debug.Log("Adding [" + currentRoomManager.GetAdjacentRoomSpot(j) + "] spot to empty slots");
-                        adjacentRoomSlots.Add(currentRoomManager.GetAdjacentRoomSpot(j));
-                    } 
+                    //// Add available room slots to a list.
+                    //for ( int j = 0; j < currentRoomManager.GetAdjacentRoomSpotsLength(); j++ )
+                    //{
+                    //    Debug.Log("Adding [" + currentRoomManager.GetAdjacentRoomSpot(j) + "] spot to empty slots");
+                    //    adjacentRoomSlots.Add(currentRoomManager.GetAdjacentRoomSpot(j));
+                    //} 
                 }
             }
 
@@ -93,11 +95,11 @@ namespace FlamingApes.Underwater
                 Debug.LogError("For some reason not all room weren't instantiated!");
             }
 
-            for ( int i = 0; i < rooms.Count; i++ )
-            {
-                // Set room's Z axis to zero. Not necessary, but looks better when viewing the level in 3D in editor :)
-                rooms[i].transform.position += new Vector3(0.0f, 0.0f, i);
-            }
+            //for ( int i = 0; i < rooms.Count; i++ )
+            //{
+            //    // Set room's Z axis to zero. Not necessary, but looks better when viewing the level in 3D in editor :)
+            //    rooms[i].transform.position += new Vector3(0.0f, 0.0f, i);
+            //}
         }
 
         private Transform SetSpawnPoint(int index)
@@ -118,7 +120,7 @@ namespace FlamingApes.Underwater
             }
 
             // Set next room's Z position for Raycast check.
-            spawnPoint.position += new Vector3(0, 0, -1);
+            //spawnPoint.position += new Vector3(0, 0, -1);
 
             return spawnPoint;
         }

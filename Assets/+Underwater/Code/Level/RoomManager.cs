@@ -9,9 +9,19 @@ namespace FlamingApes.Underwater
         [SerializeField] private List<GameObject> adjacentRoomSpots;
         [SerializeField] private List<GameObject> adjacentRooms;
 
+        public void InitializeCoroutine()
+        {
+            InitializeRoom();
+        }
+
         public void InitializeRoom()
         {
-            Debug.Log(name + " Initializing room");
+
+            Debug.Log(name + " Initializing room before yield");
+
+            //yield return null;
+
+            //Debug.Log(name + " Initializing room after yield");
 
             // Enable List of AdjacentSpawnPoints.
             for ( int i = 0; i < adjacentRoomSpots.Count; i++ )
@@ -31,6 +41,13 @@ namespace FlamingApes.Underwater
                     adjacentRooms.Add(adjacentRoomSpots[i]);
                     adjacentRoomSpots.RemoveAt(i);
                 }
+            }
+
+            for ( int i = 0; i < adjacentRoomSpots.Count ; i++ )
+            {
+                Debug.Log("LevelManager adjacentRoomSpots before adding: " + LevelManager.Instance.adjacentRoomSlots.Count);
+                LevelManager.Instance.adjacentRoomSlots.Add(adjacentRoomSpots[i]);
+                Debug.Log("LevelManager adjacentRoomSpots after adding: " + LevelManager.Instance.adjacentRoomSlots.Count);
             }
         }
 
