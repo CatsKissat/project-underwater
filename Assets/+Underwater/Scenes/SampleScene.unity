@@ -365,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 324606675365192928, guid: c1d331f321f3c5247a57f7a4b1f09115, type: 3}
       propertyPath: roomCount
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 324606675365192928, guid: c1d331f321f3c5247a57f7a4b1f09115, type: 3}
       propertyPath: enableGenerating

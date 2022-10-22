@@ -27,20 +27,20 @@ namespace FlamingApes.Underwater
             InitializeInstance();
             //InitializeSpawnPoint();
         }
-        private async void Start()
+        private void Start()
         {
 #if UNITY_EDITOR
             if ( enableGenerating )
             {
 #endif
-                await GenerateLevel();
+                GenerateLevel();
 #if UNITY_EDITOR
             }
 #endif
         }
 
         // TODO: Remove async when level generating 
-        private async Task GenerateLevel()
+        private async void GenerateLevel()
         {
             // Create Level GameObject for the level in Hierarchy.
             GameObject level = new GameObject("Level");
@@ -55,6 +55,8 @@ namespace FlamingApes.Underwater
                 // Instantiate room from prefab
                 rooms.Add(Instantiate(roomPrefab, SetSpawnPoint(i).position, Quaternion.identity));
 
+                Debug.LogError("A new room spawned [_" + rooms[i].name + "_]");
+
                 // Add number to it's name.
                 rooms[i].name += "(" + (i + 1) + ")";
 
@@ -63,15 +65,21 @@ namespace FlamingApes.Underwater
 
                 // TODO: Check is there space in adjacentRoomSlots or not
 
-                RoomManager currentRoomManager = rooms[i].GetComponent<RoomManager>();
+                adjacentRoomSlots.Clear();
 
-                // Initialize room
-                currentRoomManager.InitializeRoom();
-
-                // Add available room slots to a list.
-                for ( int j = 0; j < currentRoomManager.GetAdjacentRoomSpotsLength(); j++ )
+                for ( int k = 0; k < rooms.Count; k++ )
                 {
-                    adjacentRoomSlots.Add(currentRoomManager.GetAdjacentRoomSpot(j));
+                    RoomManager currentRoomManager = rooms[k].GetComponent<RoomManager>();
+
+                    // Initialize room
+                    currentRoomManager.InitializeRoom();
+
+                    // Add available room slots to a list.
+                    for ( int j = 0; j < currentRoomManager.GetAdjacentRoomSpotsLength(); j++ )
+                    {
+                        Debug.Log("Adding [" + currentRoomManager.GetAdjacentRoomSpot(j) + "] spot to empty slots");
+                        adjacentRoomSlots.Add(currentRoomManager.GetAdjacentRoomSpot(j));
+                    } 
                 }
             }
 

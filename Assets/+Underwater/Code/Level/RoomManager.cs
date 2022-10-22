@@ -11,6 +11,8 @@ namespace FlamingApes.Underwater
 
         public void InitializeRoom()
         {
+            Debug.Log(name + " Initializing room");
+
             // Enable List of AdjacentSpawnPoints.
             for ( int i = 0; i < adjacentRoomSpots.Count; i++ )
             {
@@ -23,6 +25,7 @@ namespace FlamingApes.Underwater
                 bool isAdjacentSpotFree = adjacentRoomSpots[i].GetComponent<CheckForRoomSpace>().CastCheckingRay();
                 // TODO: Cast raycast check for all the old rooms too.
                 // TODO: Set adjacentToomSpots to to adjacentRooms if there is a room.
+                Debug.Log(name + ", " + adjacentRoomSpots[i] + ", is spot free: " + isAdjacentSpotFree);
                 if ( !isAdjacentSpotFree )
                 {
                     adjacentRooms.Add(adjacentRoomSpots[i]);

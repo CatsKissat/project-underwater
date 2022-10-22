@@ -18,12 +18,14 @@ namespace FlamingApes.Underwater
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * rayDistance, Color.red, rayDuration);
                 Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.forward) * rayDistance, Color.black, rayDuration);
+                Debug.LogError(transform.parent.name + ", " + name + ": hit detected");
                 return false;
             }
             else
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * rayDistance, Color.yellow, rayDuration);
                 Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.forward) * rayDistance, Color.green, rayDuration);
+                Debug.LogWarning(transform.parent.name + ", " + name + ": no hit");
                 return true;
             }
         }
