@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,23 @@ namespace FlamingApes.Underwater
         [SerializeField] private List<GameObject> adjacentRoomSpots;
         [SerializeField] private List<GameObject> adjacentRooms;
 
-        public void InitializeRoom()
+        internal void AddAdjacentSlotsToList()
         {
+            Debug.Log("AddAdjacentSlotsToList");
+            foreach ( Transform child in transform )
+            {
+                Debug.Log("Foreach");
+                if ( child.gameObject.activeInHierarchy )
+                {
+                    adjacentRoomSpots.Add(child.gameObject);
+                }
+            }
+        }
+
+        internal void InitializeRoom()
+        {
+            Debug.Log("Initializing room");
+
             // If AdjacentSpawnPoint's raycast collides with a another room, put it to a List of adjacentRooms.
             for ( int i = (adjacentRoomSpots.Count - 1); i > -1; i-- )
             {
@@ -29,15 +45,11 @@ namespace FlamingApes.Underwater
             }
         }
 
-        public int GetAdjacentRoomSpotsLength()
-        {
-            return adjacentRoomSpots.Count;
-        }
-
-        public GameObject GetAdjacentRoomSpot(int index)
-        {
-            return adjacentRoomSpots[index];
-        }
+        //internal void AddSlotToAdjacentRooms()
+        //{
+        //    adjacentRooms.Add(adjacentRoomSpots[i]);
+        //    adjacentRoomSpots.RemoveAt(i);
+        //}
 
         private void SpawnWalls()
         {

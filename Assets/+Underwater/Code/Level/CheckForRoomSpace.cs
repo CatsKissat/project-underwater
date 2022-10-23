@@ -9,7 +9,7 @@ namespace FlamingApes.Underwater
         [SerializeField] private LayerMask layer;
         [SerializeField] private float rayDistance = 10.0f;
 
-        public bool CastCheckingRay()
+        internal bool CastCheckingRay()
         {
             // Cast a ray to check is there a floor layer
             Vector3 rayOrigin = new Vector3(transform.position.x, transform.position.y, -5);

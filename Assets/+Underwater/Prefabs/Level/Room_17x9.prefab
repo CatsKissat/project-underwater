@@ -132,11 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f01c62003d4004cbed0609f122fab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjacentRoomSpots:
-  - {fileID: 4213036435730272527}
-  - {fileID: 2706098033004924274}
-  - {fileID: 3874559807761227985}
-  - {fileID: 1182773671095321211}
+  adjacentRoomSpots: []
   adjacentRooms: []
 --- !u!1001 &5097026956136202175
 PrefabInstance:
@@ -191,18 +187,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992546423961398960, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
       propertyPath: m_Name
-      value: AdjacentRoomPoint Right (1)
+      value: RoomSpawnPoint Right (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
 --- !u!4 &315657178894656468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4818068245586631787, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
-  m_PrefabInstance: {fileID: 5097026956136202175}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4213036435730272527 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8992546423961398960, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
   m_PrefabInstance: {fileID: 5097026956136202175}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5264359204745940577
@@ -258,18 +249,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992546423961398960, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
       propertyPath: m_Name
-      value: AdjacentRoomPoint Left (3)
+      value: RoomSpawnPoint Left (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
 --- !u!4 &852294430554018314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4818068245586631787, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
-  m_PrefabInstance: {fileID: 5264359204745940577}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3874559807761227985 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8992546423961398960, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
   m_PrefabInstance: {fileID: 5264359204745940577}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6432842866653520834
@@ -325,18 +311,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992546423961398960, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
       propertyPath: m_Name
-      value: AdjacentRoomPoint Down (2)
+      value: RoomSpawnPoint Down (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
 --- !u!4 &1989248582654246825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4818068245586631787, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
-  m_PrefabInstance: {fileID: 6432842866653520834}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2706098033004924274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8992546423961398960, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
   m_PrefabInstance: {fileID: 6432842866653520834}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7827818212614991051
@@ -392,15 +373,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8992546423961398960, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
       propertyPath: m_Name
-      value: AdjacentRoomPoint Up (4)
+      value: RoomSpawnPoint Up (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
---- !u!1 &1182773671095321211 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8992546423961398960, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}
-  m_PrefabInstance: {fileID: 7827818212614991051}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3349772924330979488 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4818068245586631787, guid: 8bd40eaeb9dc0984d845c910103a4759, type: 3}

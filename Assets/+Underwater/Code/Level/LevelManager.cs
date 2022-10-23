@@ -64,6 +64,9 @@ namespace FlamingApes.Underwater
                 // Empty adjacentRoomSlots because recreating it later again
                 adjacentRoomSlots.Clear();
 
+                RoomManager roomManager = rooms[i].GetComponent<RoomManager>();
+                roomManager.AddAdjacentSlotsToList();
+
                 for ( int k = 0; k < rooms.Count; k++ )
                 {
                     RoomManager currentRoomManager = rooms[k].GetComponent<RoomManager>();
