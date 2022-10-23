@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +8,57 @@ namespace FlamingApes.Underwater
     {
         [SerializeField] private List<GameObject> adjacentRoomSpots;
         [SerializeField] private List<GameObject> adjacentRooms;
+        private int slotCount;
 
-        internal void AddAdjacentSlotsToList()
+        private void Awake()
         {
-            Debug.Log("AddAdjacentSlotsToList");
             foreach ( Transform child in transform )
             {
-                Debug.Log("Foreach");
+                slotCount++;
+                if(transform.)
+            }
+
+            int[] spotEnabler = new int[slotCount];
+
+            //for ( int i = 0; i < spotEnabler.Length; i++ )
+            //{
+            //    if ( i == (spotEnabler.Length - 1) )
+            //    {
+            //        spotEnabler[i] = Random.Range(0, 2);
+            //    }
+            //    else
+            //    {
+            //        spotEnabler[i] = 1;
+            //    }
+            //}
+
+            for ( int i = 0; i < slotCount; i++ )
+            {
+                if ( i == (slotCount - 1) )
+                {
+                    spotEnabler[i] = Random.Range(0, 2);
+                }
+                else
+                {
+                    spotEnabler[i] = 1;
+                }
+            }
+
+
+
+            foreach ( Transform child in transform )
+            {
+                if ( child.gameObject.activeInHierarchy )
+                {
+                    adjacentRoomSpots.Add(child.gameObject);
+                }
+            }
+        }
+
+        private void AddAdjacentSlotsToList()
+        {
+            foreach ( Transform child in transform )
+            {
                 if ( child.gameObject.activeInHierarchy )
                 {
                     adjacentRoomSpots.Add(child.gameObject);
@@ -39,7 +82,7 @@ namespace FlamingApes.Underwater
             }
 
             // Add available room slots to a list.
-            for ( int i = 0; i < adjacentRoomSpots.Count ; i++ )
+            for ( int i = 0; i < adjacentRoomSpots.Count; i++ )
             {
                 LevelManager.Instance.adjacentRoomSlots.Add(adjacentRoomSpots[i]);
             }
