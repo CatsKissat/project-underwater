@@ -19,7 +19,6 @@ namespace FlamingApes.Underwater
         [SerializeField] private int delay;
 #endif
 
-        private Transform spawnPoint;
         private List<GameObject> rooms = new List<GameObject>();
 
         private void Awake()
@@ -85,10 +84,17 @@ namespace FlamingApes.Underwater
             {
                 Debug.LogError("For some reason not all room weren't instantiated!");
             }
+
+            for ( int i = 0; i < rooms.Count; i++ )
+            {
+                rooms[i].GetComponent<RoomManager>().SpawnRoomLayout();
+            }
         }
 
         private Transform SetSpawnPoint(int index)
         {
+            Transform spawnPoint;
+
             // TODO: Get rid of if else and make one adjacentRoomSlots for the first room. Delete point after using it.
             if ( index == 0 )
             {
@@ -96,7 +102,7 @@ namespace FlamingApes.Underwater
             }
             else
             {
-                int randomIndex = (int)Random.Range(0, adjacentRoomSlots.Count);
+                int randomIndex = Random.Range(0, adjacentRoomSlots.Count);
                 spawnPoint = adjacentRoomSlots[randomIndex].transform;
             }
             if ( spawnPoint == null )
