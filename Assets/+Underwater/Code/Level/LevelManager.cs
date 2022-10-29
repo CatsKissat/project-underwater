@@ -24,8 +24,8 @@ namespace FlamingApes.Underwater
         private void Awake()
         {
             InitializeInstance();
-            //InitializeSpawnPoint();
         }
+
         private void Start()
         {
 #if UNITY_EDITOR
