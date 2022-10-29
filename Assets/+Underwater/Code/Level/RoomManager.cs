@@ -76,15 +76,19 @@ namespace FlamingApes.Underwater
 
         private void SpawnWalls()
         {
-            // Spawn after layout after generating a level
+            // Spawn after layout after generating a level.
         }
 
         internal void SpawnRoomLayout()
         {
-            // NOTE: Using this to spawn walls too for testing purpose.
-            // Spawn room layout (aka obstacles, spawn points and other predetermined this from a list) after generating walls.
+            // Spawn room layout (aka obstacles, spawn points and other predetermined this from a list).
             int randomizedLayout = Random.Range(0, roomLayouts.Length);
             Instantiate(roomLayouts[randomizedLayout], transform.position, Quaternion.identity);
+        }
+
+        private void SetRoomConnections()
+        {
+            // Set connections to adjacent rooms.
         }
     }
 }
