@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace FlamingApes.Underwater
 {
     public class RoomManager : MonoBehaviour
     {
+        // Generating room and adjacent rooms
         [SerializeField] private GameObject[] roomLayouts;
         [SerializeField] private List<GameObject> adjacentRoomSpots;
         [SerializeField] private List<GameObject> adjacentRooms;
         [SerializeField] private GameObject dummyFloor;
         private int slotCount;
+
+        // Generating walls
+        [SerializeField] private Tilemap tilemap;
+        [SerializeField] private Tile spotForWallTile;
+        [SerializeField] private TileBase wallTile;
+        [SerializeField] private Tile spotForDoorTile;
+        [SerializeField] private TileBase doorTile;
+        [SerializeField] BoundsInt roomArea;
 
         private void Awake()
         {
@@ -74,21 +84,58 @@ namespace FlamingApes.Underwater
             }
         }
 
-        private void SpawnWalls()
+        internal void SpawnWalls()
         {
-            // Spawn after layout after generating a level.
+            // Check for wall spots and changes them to a wall tiles.
+            ChangeCorrectTiles(spotForWallTile, wallTile);
+
+            // TODO: Doors locations and fill them
+
+            // Check for door spots and changes them to a door tiles.
+            ChangeCorrectTiles(spotForDoorTile, doorTile);
+        }
+
+        private void ChangeCorrectTiles(Tile spotTile, TileBase TileToUse)
+        {
+            for ( int x = roomArea.xMin; x < roomArea.xMax; x++ )
+            {
+                for ( int y = roomArea.yMin; y < roomArea.yMax; y++ )
+                {
+                    Vector3Int intVector = new Vector3Int(x, y);
+                    if ( tilemap.GetTile(intVector) == spotTile )
+                    {
+                        tilemap.SetTile(intVector, TileToUse);
+                    }
+                }
+            }
         }
 
         internal void SpawnRoomLayout()
         {
-            // Spawn room layout (aka obstacles, spawn points and other predetermined this from a list).
+            // Spawn room layout (aka obstacles, spawn points and other predetermined things from a list).
             int randomizedLayout = Random.Range(0, roomLayouts.Length);
             Instantiate(roomLayouts[randomizedLayout], transform.position, Quaternion.identity);
         }
 
-        private void SetRoomConnections()
+        internal void SetRoomConnections()
         {
             // Set connections to adjacent rooms.
+            // NOTE: This probably should happen at the same place where spawning walls.
+        }
+
+        internal void SpawnExit()
+        {
+
+        }
+
+        internal void SpawnMonsters()
+        {
+
+        }
+
+        internal void SpawnTreasures()
+        {
+
         }
     }
 }
