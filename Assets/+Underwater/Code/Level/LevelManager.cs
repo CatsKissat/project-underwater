@@ -38,8 +38,8 @@ namespace FlamingApes.Underwater
 #endif
         }
 
-        // TODO: Remove async when level generating 
-        private async void GenerateLevel()
+        // TODO: Remove async when level generating if present 
+        private /*async*/ void GenerateLevel()
         {
             // Create Level GameObject for the level in Hierarchy.
             GameObject level = new GameObject("Level");
@@ -48,7 +48,7 @@ namespace FlamingApes.Underwater
             {
 #if UNITY_EDITOR
                 // Add delay to see floor by floor level spawning.
-                await Task.Delay(delay);
+                //await Task.Delay(delay);
 #endif
 
                 // Instantiate room from prefab
@@ -62,9 +62,6 @@ namespace FlamingApes.Underwater
 
                 // Empty adjacentRoomSlots because recreating it later again
                 adjacentRoomSlots.Clear();
-
-                //RoomManager roomManager = rooms[i].GetComponent<RoomManager>();
-                //roomManager.AddAdjacentSlotsToList();
 
                 for ( int k = 0; k < rooms.Count; k++ )
                 {
@@ -85,6 +82,7 @@ namespace FlamingApes.Underwater
                 Debug.LogError("For some reason not all room weren't instantiated!");
             }
 
+            // Spawn all nessecary things into the rooms.
             for ( int i = 0; i < rooms.Count; i++ )
             {
                 RoomManager roomManager = rooms[i].GetComponent<RoomManager>();
@@ -99,7 +97,7 @@ namespace FlamingApes.Underwater
         {
             Transform spawnPoint;
 
-            // TODO: Get rid of if else and make one adjacentRoomSlots for the first room. Delete point after using it.
+            // TODO: If time, get rid of if else and make one adjacentRoomSlots for the first room. Delete point after using it.
             if ( index == 0 )
             {
                 spawnPoint = transform.GetChild(0);
@@ -109,6 +107,7 @@ namespace FlamingApes.Underwater
                 int randomIndex = Random.Range(0, adjacentRoomSlots.Count);
                 spawnPoint = adjacentRoomSlots[randomIndex].transform;
             }
+
             if ( spawnPoint == null )
             {
                 Debug.LogError(name + "'s " + nameof(roomPrefab) + " variable is null. Can't spawn rooms without of it!");

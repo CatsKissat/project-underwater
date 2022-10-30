@@ -89,8 +89,6 @@ namespace FlamingApes.Underwater
             // Check for wall spots and changes them to a wall tiles.
             ChangeCorrectTiles(spotForWallTile, wallTile);
 
-            // TODO: Doors locations and fill them
-
             // Check for door spots and changes them to a door tiles.
             ChangeCorrectTiles(spotForDoorTile, doorTile);
         }
@@ -112,7 +110,7 @@ namespace FlamingApes.Underwater
 
         internal void SpawnRoomLayout()
         {
-            // Spawn room layout (aka obstacles, spawn points and other predetermined things from a list).
+            // Spawn room layout (aka obstacles, spawn points and other predetermined things from a list of roomLayouts).
             int randomizedLayout = Random.Range(0, roomLayouts.Length);
             Instantiate(roomLayouts[randomizedLayout], transform.position, Quaternion.identity);
         }
@@ -120,7 +118,7 @@ namespace FlamingApes.Underwater
         internal void SetRoomConnections()
         {
             // Set connections to adjacent rooms.
-            // NOTE: This probably should happen at the same place where spawning walls.
+            // NOTE: This probably should happen at the same place where spawning door tiles.
         }
 
         internal void SpawnExit()
