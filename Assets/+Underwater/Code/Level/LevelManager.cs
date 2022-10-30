@@ -87,8 +87,12 @@ namespace FlamingApes.Underwater
 
             for ( int i = 0; i < rooms.Count; i++ )
             {
-                rooms[i].GetComponent<RoomManager>().SpawnRoomLayout();
+                RoomManager roomManager = rooms[i].GetComponent<RoomManager>();
+                roomManager.SpawnWalls();
+                roomManager.SpawnRoomLayout();
             }
+
+            // TODO: Calculate all distance from all rooms to the starting room. If distance is greatest, place exit there. If equal, randomize between those rooms.
         }
 
         private Transform SetSpawnPoint(int index)
