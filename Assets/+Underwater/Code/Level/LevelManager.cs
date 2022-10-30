@@ -15,7 +15,7 @@ namespace FlamingApes.Underwater
 
 #if UNITY_EDITOR
         [Header("Debug")]
-        [SerializeField] private bool enableGenerating;
+        [SerializeField] private bool EnableGenerating = true;
         [SerializeField] private int delay;
 #endif
 
@@ -29,7 +29,7 @@ namespace FlamingApes.Underwater
         private void Start()
         {
 #if UNITY_EDITOR
-            if ( enableGenerating )
+            if ( EnableGenerating )
             {
 #endif
                 GenerateLevel();
