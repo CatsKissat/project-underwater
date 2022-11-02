@@ -476,7 +476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1136172766722101532}
   m_Layer: 0
-  m_Name: RoomLayout_Placeholder
+  m_Name: RoomLayout_19x11_Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
