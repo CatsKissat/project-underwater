@@ -10,25 +10,19 @@ namespace FlamingApes.Underwater
 
         //references for rotation for aiming at mouse and keyboard
         [SerializeField]
-        private Rigidbody2D rb2D;
-
-        [SerializeField]
         private Camera main;
 
         [SerializeField]
         private bool isGamepadActive;
 
-        private Vector2 mousePositionWorld;
-        private Vector3 mousePositionCurrent;
-
-        //player movement references
+        [SerializeField]
+        InputActionReference pointerPosition;
 
         private Vector2 pointerInput;
         private Vector2 input;
         private WeaponParent weaponParent;
 
-        [SerializeField]
-        InputActionReference pointerPosition;
+        //player movement references
 
         [SerializeField]
         float movementSpeed = 1;
@@ -42,8 +36,7 @@ namespace FlamingApes.Underwater
 
         void Update()
         {
-            pointerInput = GetPointerInput();
-            weaponParent.PointerPosition = pointerInput;
+
             //Moves character, without letting the rotation to affect movement direction
             transform.Translate(input * movementSpeed * Time.deltaTime, Space.World);
 
@@ -53,40 +46,37 @@ namespace FlamingApes.Underwater
                 //Right stick input reading for rotation
                 var gamepad = Gamepad.current;
                 Vector3 rightStickInput = gamepad.rightStick.ReadValue();
+                
                 if (rightStickInput.sqrMagnitude > Mathf.Epsilon)
                 {
-                    float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
-                    //rb2D.rotation = angleToLook;
-                    Debug.Log("Gamepad active");
+                    //TÄHÄN TARVISI KEKSIÄ MITEN TÄHTÄYS COORDINAATIT MUUTTUISI HAHMON SIJAINNIN MUKAAN, EIKÄ VAIN SAATUJEN JOYSTICKIN KOORDINAATTIEN MUKAAN
+                    weaponParent.PointerPosition = rightStickInput;
+                   
+                    Debug.Log("Gamepad active" + "Gamepad coordinates" + rightStickInput);
                 }
             }
+
             //if no gamepad active use mouse to aim to mouses current position
             else
             {
-                mousePositionCurrent = Mouse.current.position.ReadValue();
-                mousePositionWorld = main.ScreenToWorldPoint(mousePositionCurrent);
-
-                Vector2 lookDirection = mousePositionWorld - rb2D.position;
-                float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-
-                // rb2D.rotation = angle;
+                pointerInput = GetMousePointerInput();
+                weaponParent.PointerPosition = pointerInput;
+                Debug.Log(pointerInput);
             }
-
         }
 
-        private Vector2 GetPointerInput()
+        //Find the mouse point on screen
+        private Vector2 GetMousePointerInput()
         {
             Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
             mousePos.z = Camera.main.nearClipPlane;
             return Camera.main.ScreenToWorldPoint(mousePos);
-        }
-        
+        } 
 
     //input reading for controls
         public void Move(InputAction.CallbackContext context)
         {
             input = context.ReadValue<Vector2>();
-
         }
 
         //Unity event OnDeviceChange reads the boolean if controller is equiped
