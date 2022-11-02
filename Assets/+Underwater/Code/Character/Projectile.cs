@@ -18,7 +18,7 @@ namespace FlamingApes.Underwater
 
         private void OnEnable()
         {
-            rb2D.AddForce(transform.up * fireForce, ForceMode2D.Impulse);
+            rb2D.AddForce(-transform.right * fireForce, ForceMode2D.Impulse);
             Invoke(nameof(Destroy), lifeTime);
         }
 
