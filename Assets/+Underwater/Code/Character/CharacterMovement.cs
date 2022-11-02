@@ -15,26 +15,35 @@ namespace FlamingApes.Underwater
         [SerializeField]
         private Camera main;
 
-        [SerializeField] 
+        [SerializeField]
         private bool isGamepadActive;
-        
+
         private Vector2 mousePositionWorld;
         private Vector3 mousePositionCurrent;
 
         //player movement references
-       
+
+        private Vector2 pointerInput;
         private Vector2 input;
-        
+        private WeaponParent weaponParent;
+
+        [SerializeField]
+        InputActionReference pointerPosition;
 
         [SerializeField]
         float movementSpeed = 1;
 
-        // Update is called once per frame
-        
-        void Update()
-        { 
-            
+        private void Awake()
+        {
+            weaponParent = GetComponentInChildren<WeaponParent>();
+        }
 
+        // Update is called once per frame
+
+        void Update()
+        {
+            pointerInput = GetPointerInput();
+            weaponParent.PointerPosition = pointerInput;
             //Moves character, without letting the rotation to affect movement direction
             transform.Translate(input * movementSpeed * Time.deltaTime, Space.World);
 
@@ -47,7 +56,7 @@ namespace FlamingApes.Underwater
                 if (rightStickInput.sqrMagnitude > Mathf.Epsilon)
                 {
                     float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
-                    rb2D.rotation = angleToLook;
+                    //rb2D.rotation = angleToLook;
                     Debug.Log("Gamepad active");
                 }
             }
@@ -60,15 +69,24 @@ namespace FlamingApes.Underwater
                 Vector2 lookDirection = mousePositionWorld - rb2D.position;
                 float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
 
-                rb2D.rotation = angle;
+                // rb2D.rotation = angle;
             }
+
         }
 
-        //input reading for controls
+        private Vector2 GetPointerInput()
+        {
+            Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
+            mousePos.z = Camera.main.nearClipPlane;
+            return Camera.main.ScreenToWorldPoint(mousePos);
+        }
+        
+
+    //input reading for controls
         public void Move(InputAction.CallbackContext context)
         {
             input = context.ReadValue<Vector2>();
-                
+
         }
 
         //Unity event OnDeviceChange reads the boolean if controller is equiped
