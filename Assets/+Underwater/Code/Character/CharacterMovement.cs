@@ -47,7 +47,7 @@ namespace FlamingApes.Underwater
                 if (rightStickInput.sqrMagnitude > Mathf.Epsilon)
                 {
                     float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
-                    rb2D.rotation = angleToLook;
+                    //rb2D.rotation = angleToLook;
                     Debug.Log("Gamepad active");
                 }
             }
@@ -60,7 +60,7 @@ namespace FlamingApes.Underwater
                 Vector2 lookDirection = mousePositionWorld - rb2D.position;
                 float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
 
-                rb2D.rotation = angle;
+                //rb2D.rotation = angle;
             }
         }
 
