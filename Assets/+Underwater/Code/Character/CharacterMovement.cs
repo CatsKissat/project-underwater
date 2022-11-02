@@ -15,52 +15,82 @@ namespace FlamingApes.Underwater
         [SerializeField]
         private Camera main;
 
-        [SerializeField] 
+        [SerializeField]
         private bool isGamepadActive;
-        
+
         private Vector2 mousePositionWorld;
         private Vector3 mousePositionCurrent;
 
         //player movement references
-       
+
         private Vector2 input;
-        
+
+        // Animator
+        private Animator animator;
+        private string xSpawnParam = "spawn";
+        private string xAxisParam = "x";
+        private string yAxisParam = "y";
+        private string canMoveParam = "canMove";
+        private string isRunningParam = "isRunning";
+        private string runLeftParam = "runLeft";
+        private string runDiagonalRightParam = "runDiagonalRight";
+        private SpriteRenderer spriteRender;
 
         [SerializeField]
         float movementSpeed = 1;
 
         // Update is called once per frame
-        
-        void Update()
-        { 
-            
 
-            //Moves character, without letting the rotation to affect movement direction
-            transform.Translate(input * movementSpeed * Time.deltaTime, Space.World);
-
-            //If gamepad is active and sensing input from stick controller aim with right controller
-            if (isGamepadActive)
+        private void Start()
+        {
+            animator = GetComponent<Animator>();
+            if ( animator == null )
             {
-                //Right stick input reading for rotation
-                var gamepad = Gamepad.current;
-                Vector3 rightStickInput = gamepad.rightStick.ReadValue();
-                if (rightStickInput.sqrMagnitude > Mathf.Epsilon)
-                {
-                    float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
-                    //rb2D.rotation = angleToLook;
-                    Debug.Log("Gamepad active");
-                }
+                Debug.LogError(name + " is missing an Animator reference!");
             }
-            //if no gamepad active use mouse to aim to mouses current position
-            else
+            spriteRender = GetComponent<SpriteRenderer>();
+            if ( spriteRender == null )
             {
-                mousePositionCurrent = Mouse.current.position.ReadValue();
-                mousePositionWorld = main.ScreenToWorldPoint(mousePositionCurrent);
+                Debug.LogError(name + " is missing a SpriteRenderer reference!");
+            }
+        }
 
-                Vector2 lookDirection = mousePositionWorld - rb2D.position;
-                float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+        void Update()
+        {
+            if ( animator.GetCurrentAnimatorStateInfo(0).IsName(xSpawnParam) )
+            {
+                animator.SetBool(canMoveParam, true);
+            }
 
-                //rb2D.rotation = angle;
+            if ( animator.GetBool(canMoveParam) )
+            {
+                //Moves character, without letting the rotation to affect movement direction
+                transform.Translate(input * movementSpeed * Time.deltaTime, Space.World);
+
+                //If gamepad is active and sensing input from stick controller aim with right controller
+                if ( isGamepadActive )
+                {
+                    //Right stick input reading for rotation
+                    var gamepad = Gamepad.current;
+                    Vector3 rightStickInput = gamepad.rightStick.ReadValue();
+                    if ( rightStickInput.sqrMagnitude > Mathf.Epsilon )
+                    {
+                        float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
+                        //rb2D.rotation = angleToLook;
+                        Debug.Log("Gamepad active");
+                    }
+                }
+                //if no gamepad active use mouse to aim to mouses current position
+                else
+                {
+                    mousePositionCurrent = Mouse.current.position.ReadValue();
+                    mousePositionWorld = main.ScreenToWorldPoint(mousePositionCurrent);
+
+                    Vector2 lookDirection = mousePositionWorld - rb2D.position;
+                    float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+
+                    //rb2D.rotation = angle;
+                }
             }
         }
 
@@ -68,7 +98,34 @@ namespace FlamingApes.Underwater
         public void Move(InputAction.CallbackContext context)
         {
             input = context.ReadValue<Vector2>();
-                
+
+            // Animations
+            if ( input.magnitude > 0.1 )
+            {
+                if ( input.x < -0.1 && input.y < 0.1 )
+                {
+                    spriteRender.flipX = false;
+                }
+                if ( input.x > 0.1f && input.y < 0.1 )
+                {
+                    spriteRender.flipX = true;
+                }
+                if ( input.x < -0.1 && input.y > 0.1 )
+                {
+                    spriteRender.flipX = true;
+                }
+                if ( input.x > 0.1f && input.y > 0.1 )
+                {
+                    spriteRender.flipX = false;
+                }
+                animator.SetFloat(xAxisParam, input.x);
+                animator.SetBool(isRunningParam, true);
+                animator.SetFloat(yAxisParam, input.y);
+            }
+            else
+            {
+                animator.SetBool(isRunningParam, false);
+            }
         }
 
         //Unity event OnDeviceChange reads the boolean if controller is equiped

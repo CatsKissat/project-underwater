@@ -16,6 +16,8 @@ namespace FlamingApes.Underwater
         private Transform firePoint;
         //boolean for shooting cooldown and amount cooldown is active
         private bool canAttack = true;
+        [SerializeField]
+        private Transform hand;
 
         [SerializeField]
         float shootingCooldown = 1f;
@@ -30,7 +32,7 @@ namespace FlamingApes.Underwater
             if (projectile != null)
             {
                 projectile.transform.position = firePoint.transform.position;
-                projectile.transform.rotation = firePoint.transform.rotation;
+                projectile.transform.rotation = hand.transform.rotation;
                 projectile.SetActive(true);
                 Debug.Log("FIRE!");
             }
