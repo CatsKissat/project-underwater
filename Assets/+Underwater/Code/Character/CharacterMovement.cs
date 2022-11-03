@@ -10,20 +10,26 @@ namespace FlamingApes.Underwater
 
         //references for rotation for aiming at mouse and keyboard
         [SerializeField]
-        private Rigidbody2D rb2D;
+        private Camera main;
 
         [SerializeField]
         private Camera main;
 
-        [SerializeField]
+        [SerializeField] 
         private bool isGamepadActive;
-
+        
         private Vector2 mousePositionWorld;
         private Vector3 mousePositionCurrent;
 
-        //player movement references
+        [SerializeField]
+        private InputActionReference pointerPosition;
 
+        private float directionInput;
+        private Vector2 pointerInput;
         private Vector2 input;
+        private WeaponParent weaponParent;
+
+        //player movement references
 
         // Animator
         private Animator animator;
@@ -38,6 +44,11 @@ namespace FlamingApes.Underwater
 
         [SerializeField]
         float movementSpeed = 1;
+
+        private void Awake()
+        {
+            weaponParent = GetComponentInChildren<WeaponParent>();
+        }
 
         // Update is called once per frame
 
@@ -54,47 +65,60 @@ namespace FlamingApes.Underwater
                 Debug.LogError(name + " is missing a SpriteRenderer reference!");
             }
         }
+            
 
         void Update()
         {
             if ( animator.GetCurrentAnimatorStateInfo(0).IsName(xSpawnParam) )
             {
                 animator.SetBool(canMoveParam, true);
+                
             }
 
             if ( animator.GetBool(canMoveParam) )
             {
                 //Moves character, without letting the rotation to affect movement direction
                 transform.Translate(input * movementSpeed * Time.deltaTime, Space.World);
-
-                //If gamepad is active and sensing input from stick controller aim with right controller
-                if ( isGamepadActive )
+                
+                if (isGamepadActive)
                 {
                     //Right stick input reading for rotation
                     var gamepad = Gamepad.current;
                     Vector3 rightStickInput = gamepad.rightStick.ReadValue();
-                    if ( rightStickInput.sqrMagnitude > Mathf.Epsilon )
-                    {
-                        float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
-                        //rb2D.rotation = angleToLook;
-                        Debug.Log("Gamepad active");
+                
+                    if (rightStickInput.sqrMagnitude > Mathf.Epsilon)
+                    {                 
+                        directionInput = GetGamepadDirection();
+                        weaponParent.PointerDirection = directionInput;
                     }
                 }
-                //if no gamepad active use mouse to aim to mouses current position
-                else
-                {
-                    mousePositionCurrent = Mouse.current.position.ReadValue();
-                    mousePositionWorld = main.ScreenToWorldPoint(mousePositionCurrent);
+            }
 
-                    Vector2 lookDirection = mousePositionWorld - rb2D.position;
-                    float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-
-                    //rb2D.rotation = angle;
-                }
+            //if no gamepad active use mouse to aim to mouses current position
+            else
+            {
+                pointerInput = GetMousePointerInput();
+                weaponParent.PointerPosition = pointerInput;
             }
         }
 
-        //input reading for controls
+        private float GetGamepadDirection()
+        {
+            var gamepad = Gamepad.current;
+            Vector3 rightStickInput = gamepad.rightStick.ReadValue();
+            float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
+            return angleToLook;
+        }
+
+        //Find the mouse point on screen
+        private Vector2 GetMousePointerInput()
+        {
+            Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
+            mousePos.z = Camera.main.nearClipPlane;
+            return Camera.main.ScreenToWorldPoint(mousePos);
+        } 
+
+    //input reading for controls
         public void Move(InputAction.CallbackContext context)
         {
             input = context.ReadValue<Vector2>();
