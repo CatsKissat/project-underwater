@@ -18,6 +18,7 @@ namespace FlamingApes.Underwater
         [SerializeField]
         InputActionReference pointerPosition;
 
+        private float directionInput;
         private Vector2 pointerInput;
         private Vector2 input;
         private WeaponParent weaponParent;
@@ -48,11 +49,9 @@ namespace FlamingApes.Underwater
                 Vector3 rightStickInput = gamepad.rightStick.ReadValue();
                 
                 if (rightStickInput.sqrMagnitude > Mathf.Epsilon)
-                {
-                    //TÄHÄN TARVISI KEKSIÄ MITEN TÄHTÄYS COORDINAATIT MUUTTUISI HAHMON SIJAINNIN MUKAAN, EIKÄ VAIN SAATUJEN JOYSTICKIN KOORDINAATTIEN MUKAAN
-                    weaponParent.PointerPosition = rightStickInput;
-                   
-                    Debug.Log("Gamepad active" + "Gamepad coordinates" + rightStickInput);
+                {                 
+                    directionInput = GetGamepadDirection();
+                    weaponParent.PointerDirection = directionInput;
                 }
             }
 
@@ -63,6 +62,14 @@ namespace FlamingApes.Underwater
                 weaponParent.PointerPosition = pointerInput;
                 Debug.Log(pointerInput);
             }
+        }
+
+        private float GetGamepadDirection()
+        {
+            var gamepad = Gamepad.current;
+            Vector3 rightStickInput = gamepad.rightStick.ReadValue();
+            float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
+            return angleToLook;
         }
 
         //Find the mouse point on screen
