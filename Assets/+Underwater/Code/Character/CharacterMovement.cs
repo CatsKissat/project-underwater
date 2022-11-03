@@ -12,14 +12,8 @@ namespace FlamingApes.Underwater
         [SerializeField]
         private Camera main;
 
-        [SerializeField]
-        private Camera main;
-
         [SerializeField] 
         private bool isGamepadActive;
-        
-        private Vector2 mousePositionWorld;
-        private Vector3 mousePositionCurrent;
 
         [SerializeField]
         private InputActionReference pointerPosition;
@@ -92,21 +86,21 @@ namespace FlamingApes.Underwater
                         weaponParent.PointerDirection = directionInput;
                     }
                 }
+                //if no gamepad active use mouse to aim to mouses current position
+                else
+                {
+                    pointerInput = GetMousePointerInput();
+                    weaponParent.PointerPosition = pointerInput;
+                }
             }
 
-            //if no gamepad active use mouse to aim to mouses current position
-            else
-            {
-                pointerInput = GetMousePointerInput();
-                weaponParent.PointerPosition = pointerInput;
-            }
         }
 
         private float GetGamepadDirection()
         {
             var gamepad = Gamepad.current;
             Vector3 rightStickInput = gamepad.rightStick.ReadValue();
-            float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
+            float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 180f;
             return angleToLook;
         }
 
