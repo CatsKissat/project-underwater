@@ -16,7 +16,7 @@ namespace FlamingApes.Underwater
         private bool isGamepadActive;
 
         [SerializeField]
-        InputActionReference pointerPosition;
+        private InputActionReference pointerPosition;
 
         private float directionInput;
         private Vector2 pointerInput;
@@ -35,7 +35,7 @@ namespace FlamingApes.Underwater
 
         // Update is called once per frame
 
-        void Update()
+        private void Update()
         {
 
             //Moves character, without letting the rotation to affect movement direction
