@@ -20,7 +20,6 @@ namespace FlamingApes.Underwater
             if (isGamepadActive)
             {
                 transform.rotation = Quaternion.Euler(0 ,0 ,PointerDirection);
-                Debug.Log("IM LOOKING AT THIS" + PointerDirection);
             } 
             
             else

@@ -60,7 +60,6 @@ namespace FlamingApes.Underwater
             {
                 pointerInput = GetMousePointerInput();
                 weaponParent.PointerPosition = pointerInput;
-                Debug.Log(pointerInput);
             }
         }
 
