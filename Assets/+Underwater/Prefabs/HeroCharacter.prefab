@@ -172,7 +172,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensityEnabled: 1
   m_ShadowIntensity: 0.75
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 830457420003919227}
   - component: {fileID: 5656565378742990070}
   - component: {fileID: 8238870904613678774}
+  - component: {fileID: 2002210987}
   m_Layer: 0
   m_Name: HeroCharacter
   m_TagString: Player
@@ -521,6 +522,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2002210987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830457420003919230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.18356419, y: -0.37869895, z: 0}
+  - {x: -0.13534212, y: -0.20583762, z: 0}
+  - {x: 0.117125034, y: -0.20960595, z: 0}
+  - {x: 0.16900492, y: -0.38276395, z: 0}
+  - {x: 0.12415552, y: -0.4537061, z: 0}
+  - {x: -0.122691154, y: -0.44832802, z: 0}
+  m_ShapePathHash: -952516287
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -62718
 --- !u!1 &830457420129833497
 GameObject:
   m_ObjectHideFlags: 0

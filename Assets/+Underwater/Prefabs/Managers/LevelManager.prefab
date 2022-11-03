@@ -76,8 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48041dc491b2874f8eea9630cb8be51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 8769738915153496769, guid: df34f6fbd3b48a04f809d73a1c01fac4, type: 3}
+  roomPrefab: {fileID: 8769738915153496769, guid: b4ae5e73d91f7fa40aa5040f38d373db, type: 3}
   roomCount: 10
   adjacentRoomSlots: []
-  enableGenerating: 0
+  EnableGenerating: 1
   delay: 0
