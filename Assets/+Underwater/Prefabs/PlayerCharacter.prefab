@@ -126,11 +126,9 @@ GameObject:
   - component: {fileID: 6985194427063502672}
   - component: {fileID: 6985194427063502673}
   - component: {fileID: 8238870903815757411}
-  - component: {fileID: 3506446705986181861}
   - component: {fileID: 7687875354584237979}
   - component: {fileID: 6326927248400037156}
   - component: {fileID: 7178324115821248196}
-  - component: {fileID: 6985194427063502679}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -218,23 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fc98a54fadc2e429cb1dba6ba7b2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 6985194427063502679}
   main: {fileID: 0}
   isGamepadActive: 0
   pointerPosition: {fileID: 6298493783477487043, guid: d82426a535cdee94ba04622a54519c46, type: 3}
   movementSpeed: 7.13
---- !u!114 &3506446705986181861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6985194427063502674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9329acc381d20f049ba6f0973c19921c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7687875354584237979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +246,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8238870903815757411}
         m_TargetAssemblyTypeName: UTS.CharacterMovement, Assembly-CSharp
+        m_MethodName: OnDeviceChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6904267371285954623}
+        m_TargetAssemblyTypeName: FlamingApes.Underwater.WeaponParent, Assembly-CSharp
         m_MethodName: OnDeviceChange
         m_Mode: 0
         m_Arguments:
@@ -355,27 +352,6 @@ MonoBehaviour:
   pooledObjects: []
   objectToPool: {fileID: 6428361003673664026, guid: da995bc3e6c0e9841a9d34fb32fbae2f, type: 3}
   amountToPool: 8
---- !u!50 &6985194427063502679
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6985194427063502674}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &6985194427189710901
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,3 +398,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37a56622ef106543b71ecc211baa350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamepadActive: 0
