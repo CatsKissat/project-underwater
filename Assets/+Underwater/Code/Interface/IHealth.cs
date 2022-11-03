@@ -4,45 +4,45 @@ using UnityEngine;
 
 namespace FlamingApes.Underwater
 {
-    public interface IHealth
-    {
+	public interface IHealth
+	{
+		/// <summary>
+		/// Returns the current health.
+		/// </summary>
+		int CurrentHealth { get; }
 
-		public interface IHealth
-		{
-			
-			// Returns the current health.
-			
-			int CurrentHealth { get; }
+		/// <summary>
+		/// Maximum health.
+		/// The CurrentHealth can never exceed this.
+		/// </summary>
+		int MaxHealth { get; }
 
-			
-			// Maximum health.
-			// The CurrentHealth can never exceed this.
-			
-			int MaxHealth { get; }
+		/// <summary>
+		/// Minimum health.
+		/// The CurrentHealth can never be below this.
+		/// </summary>
+		int MinHealth { get; }
 
-		
-			//Minimum health.
-			//The CurrentHealth can never be below this.
+		/// <summary>
+		/// Increases the health by the amount.
+		/// Note: CurrentHealth can never exceed the MaxHealth.
+		/// </summary>
+		/// <param name="amount">The amount the health is increased.</param>
+		void IncreaseHealth(int amount);
 
-			int MinHealth { get; }
+		/// <summary>
+		/// Decreases the health by the amount.
+		/// Note: CurrentHealth can never be below the MinHealth.
+		/// </summary>
+		/// <param name="amount">The amount the health is decreased.</param>
+		bool DecreaseHealth(int amount);
 
-
-			// Increases the health by the amount.
-			// Note: CurrentHealth can never exceed the MaxHealth.
-
-			void IncreaseHealth(int amount);
-
-
-			// Decreases the health by the amount.
-			// Note: CurrentHealth can never be below the MinHealth.
-
-			bool DecreaseHealth(int amount);
-
-
-			// Resets the component to its default values.
-			void Reset();
-		}
+		/// <summary>
+		/// Resets the component to its default values.
+		/// </summary>
+		void Reset();
 	}
+
 
 }
 
