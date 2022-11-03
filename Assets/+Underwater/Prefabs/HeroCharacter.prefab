@@ -217,9 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fc98a54fadc2e429cb1dba6ba7b2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 830457420003919227}
   main: {fileID: 0}
   isGamepadActive: 0
+  pointerPosition: {fileID: 6298493783477487043, guid: d82426a535cdee94ba04622a54519c46, type: 3}
   movementSpeed: 7.13
 --- !u!114 &128022916334486967
 MonoBehaviour:
@@ -247,6 +247,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1810548903817124943}
         m_TargetAssemblyTypeName: UTS.CharacterMovement, Assembly-CSharp
+        m_MethodName: OnDeviceChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3793974088961262099}
+        m_TargetAssemblyTypeName: FlamingApes.Underwater.WeaponParent, Assembly-CSharp
         m_MethodName: OnDeviceChange
         m_Mode: 0
         m_Arguments:
@@ -325,7 +337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 6428361003673664026, guid: da995bc3e6c0e9841a9d34fb32fbae2f, type: 3}
   firePoint: {fileID: 5038174816442147151}
-  hand: {fileID: 830457420129833496}
   shootingCooldown: 1
 --- !u!114 &641905939756514536
 MonoBehaviour:
@@ -445,6 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37a56622ef106543b71ecc211baa350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamepadActive: 0
 --- !u!212 &1040447811148316203
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -605,15 +617,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4981612147117426576}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.356, y: 0.053, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.123, y: 0.353, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5038174816442147151}
   m_Father: {fileID: 830457420129833496}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &6827713161461947111
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -690,7 +702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665419136815222794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4329998, y: -0.004, z: 0}
+  m_LocalPosition: {x: -0.439, y: 0.018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
