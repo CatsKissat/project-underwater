@@ -108,8 +108,8 @@ namespace FlamingApes.Underwater
         private Vector2 GetMousePointerInput()
         {
             Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
-            mousePos.z = Camera.main.nearClipPlane;
-            return Camera.main.ScreenToWorldPoint(mousePos);
+            mousePos.z = main.nearClipPlane;
+            return main.ScreenToWorldPoint(mousePos);
         } 
 
     //input reading for controls
