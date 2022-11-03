@@ -14,10 +14,12 @@ namespace FlamingApes.Underwater
         //firePoint is empty gameobject, which is placed in parent object and works as point of bullets origin
         [SerializeField]
         private Transform firePoint;
+
         //boolean for shooting cooldown and amount cooldown is active
         private bool canAttack = true;
-        [SerializeField]
-        private Transform hand;
+
+        //[SerializeField]
+        //private Transform hand;
 
         [SerializeField]
         float shootingCooldown = 1f;
@@ -32,7 +34,7 @@ namespace FlamingApes.Underwater
             if (projectile != null)
             {
                 projectile.transform.position = firePoint.transform.position;
-                projectile.transform.rotation = hand.transform.rotation;
+                projectile.transform.rotation = firePoint.transform.rotation;
                 projectile.SetActive(true);
             }
 

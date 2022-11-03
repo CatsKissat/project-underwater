@@ -100,7 +100,7 @@ namespace FlamingApes.Underwater
         {
             var gamepad = Gamepad.current;
             Vector3 rightStickInput = gamepad.rightStick.ReadValue();
-            float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 180f;
+            float angleToLook = Mathf.Atan2(rightStickInput.y, rightStickInput.x) * Mathf.Rad2Deg - 90f;
             return angleToLook;
         }
 
