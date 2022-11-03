@@ -10,7 +10,7 @@ namespace FlamingApes.Underwater
 
         //references for rotation for aiming at mouse and keyboard
         [SerializeField]
-        private Camera main;
+        private Camera mainCamera;
 
         [SerializeField]
         private bool isGamepadActive;
@@ -75,8 +75,8 @@ namespace FlamingApes.Underwater
         private Vector2 GetMousePointerInput()
         {
             Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
-            mousePos.z = Camera.main.nearClipPlane;
-            return Camera.main.ScreenToWorldPoint(mousePos);
+            mousePos.z = mainCamera.nearClipPlane;
+            return mainCamera.ScreenToWorldPoint(mousePos);
         } 
 
     //input reading for controls
