@@ -7,7 +7,6 @@ namespace FlamingApes.Underwater
 {
     public class CharacterMovement : MonoBehaviour
     {
-
         //references for rotation for aiming at mouse and keyboard
         private Camera main;
 

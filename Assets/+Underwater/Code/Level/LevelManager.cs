@@ -82,6 +82,9 @@ namespace FlamingApes.Underwater
                 Debug.LogError("For some reason not all room weren't instantiated!");
             }
 
+            // Randomize which room should have the exit
+            int randomRoom = Random.Range(0, rooms.Count);
+
             // Spawn all nessecary things into the rooms.
             for ( int i = 0; i < rooms.Count; i++ )
             {
@@ -90,9 +93,11 @@ namespace FlamingApes.Underwater
                 // TODO: Enable later when generating doors and walls automatically
                 //roomManager.SpawnWalls();
                 roomManager.SpawnRoomLayout();
+                roomManager.SpawnExit();
             }
 
-            // TODO: Calculate all distance from all rooms to the starting room. If distance is greatest, place exit there. If equal, randomize between those rooms.
+            // TODO: If time, better exit room:
+            // Calculate all distance from all rooms to the starting room. If distance is greatest, place exit there. If equal, randomize between those rooms.
         }
 
         private Transform SetSpawnPoint(int index)
