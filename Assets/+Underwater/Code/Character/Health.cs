@@ -53,6 +53,7 @@ namespace FlamingApes.Underwater
 			CurrentHealth -= amount;
 
 			return CurrentHealth > MinHealth;
+			
 		}
 
 		/// <summary>
