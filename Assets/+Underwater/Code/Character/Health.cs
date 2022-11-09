@@ -6,14 +6,10 @@ namespace FlamingApes.Underwater
 {
 	public class Health : MonoBehaviour, IHealth
 	{
-		[SerializeField]
 		private int minHealth;
 
 		[SerializeField]
 		private int maxHealth;
-
-		[SerializeField]
-		private int startingHealth;
 
 		private int currentHealth;
 
@@ -69,7 +65,7 @@ namespace FlamingApes.Underwater
 
 		public void Reset()
 		{
-			CurrentHealth = startingHealth;
+			CurrentHealth = maxHealth;
 		}
 	}
 }

@@ -34,13 +34,16 @@ namespace FlamingApes.Underwater
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
-        { 
-            if (enemySensor.IsActive)
+        {
+            if ( collision.gameObject.GetComponent<Enemy>() != null )
             {
-                if (!enemySensor.ActiveUnit.Health.DecreaseHealth(damage))
+                if ( enemySensor.IsActive )
                 {
-                    // Enemy died
-                    enemySensor.ActiveUnit.Die();
+                    if ( !enemySensor.ActiveUnit.Health.DecreaseHealth(damage) )
+                    {
+                        // Enemy died
+                        enemySensor.ActiveUnit.Die();
+                    }
                 }
             }
 
