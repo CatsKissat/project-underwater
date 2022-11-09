@@ -11,22 +11,19 @@ namespace FlamingApes.Underwater
         public Vector2 PointerPosition { get; set; }
         public float PointerDirection { get; set; }
 
-        [SerializeField]
         private bool isGamepadActive;
 
-        // Update is called once per frame
         void Update()
         {
-            if (isGamepadActive)
+            if ( isGamepadActive )
             {
-                transform.rotation = Quaternion.Euler(0 ,0 ,PointerDirection);
-            } 
-            
+                transform.rotation = Quaternion.Euler(0, 0, PointerDirection);
+            }
+
             else
             {
                 transform.up = (PointerPosition - (Vector2)transform.position).normalized;
             }
-            
         }
 
         public void OnDeviceChange(PlayerInput controllerInput)

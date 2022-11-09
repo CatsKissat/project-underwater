@@ -329,10 +329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fc98a54fadc2e429cb1dba6ba7b2dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main: {fileID: 0}
-  isGamepadActive: 0
   pointerPosition: {fileID: 6298493783477487043, guid: d82426a535cdee94ba04622a54519c46, type: 3}
-  movementSpeed: 7.13
+  movementSpeed: 7
 --- !u!114 &128022916334486967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +367,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3793974088961262099}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FlamingApes.Underwater.WeaponParent, Assembly-CSharp
         m_MethodName: OnDeviceChange
         m_Mode: 0
@@ -401,12 +399,12 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1810548903817124943}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: FlamingApes.Underwater.CharacterMovement, Assembly-CSharp
         m_MethodName: 
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -550,7 +548,7 @@ MonoBehaviour:
   - {x: -0.122691154, y: -0.44832802, z: 0}
   m_ShapePathHash: -952516287
   m_Mesh: {fileID: 0}
-  m_InstanceId: -62718
+  m_InstanceId: -1294
 --- !u!1 &830457420129833497
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,8 +558,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 830457420129833496}
-  - component: {fileID: 3793974088961262099}
   - component: {fileID: 1040447811148316203}
+  - component: {fileID: 4343923955849266750}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -577,7 +575,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830457420129833497}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.295, y: -0.3336, z: 0}
+  m_LocalPosition: {x: 0.29500008, y: -0.33360004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -585,19 +583,6 @@ Transform:
   m_Father: {fileID: 830457420003919228}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3793974088961262099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830457420129833497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37a56622ef106543b71ecc211baa350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGamepadActive: 0
 --- !u!212 &1040447811148316203
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -650,6 +635,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4343923955849266750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830457420129833497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37a56622ef106543b71ecc211baa350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1584045317966929770
 GameObject:
   m_ObjectHideFlags: 0

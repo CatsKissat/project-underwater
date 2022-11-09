@@ -9,10 +9,8 @@ namespace FlamingApes.Underwater
     {
 
         //references for rotation for aiming at mouse and keyboard
-        [SerializeField]
         private Camera main;
 
-        [SerializeField] 
         private bool isGamepadActive;
 
         [SerializeField]
@@ -22,6 +20,7 @@ namespace FlamingApes.Underwater
         private Vector2 pointerInput;
         private Vector2 input;
         private WeaponParent weaponParent;
+        private Rigidbody2D rb2d;
 
         //player movement references
 
@@ -44,10 +43,9 @@ namespace FlamingApes.Underwater
             weaponParent = GetComponentInChildren<WeaponParent>();
         }
 
-        // Update is called once per frame
-
         private void Start()
         {
+            main = Camera.main;
             animator = GetComponent<Animator>();
             if ( animator == null )
             {
@@ -58,30 +56,27 @@ namespace FlamingApes.Underwater
             {
                 Debug.LogError(name + " is missing a SpriteRenderer reference!");
             }
+            rb2d = GetComponent<Rigidbody2D>();
         }
-            
+
 
         void Update()
         {
             if ( animator.GetCurrentAnimatorStateInfo(0).IsName(xSpawnParam) )
             {
                 animator.SetBool(canMoveParam, true);
-                
             }
 
             if ( animator.GetBool(canMoveParam) )
             {
-                //Moves character, without letting the rotation to affect movement direction
-                transform.Translate(input * movementSpeed * Time.deltaTime, Space.World);
-                
-                if (isGamepadActive)
+                if ( isGamepadActive )
                 {
                     //Right stick input reading for rotation
                     var gamepad = Gamepad.current;
                     Vector3 rightStickInput = gamepad.rightStick.ReadValue();
-                
-                    if (rightStickInput.sqrMagnitude > Mathf.Epsilon)
-                    {                 
+
+                    if ( rightStickInput.sqrMagnitude > Mathf.Epsilon )
+                    {
                         directionInput = GetGamepadDirection();
                         weaponParent.PointerDirection = directionInput;
                     }
@@ -93,7 +88,15 @@ namespace FlamingApes.Underwater
                     weaponParent.PointerPosition = pointerInput;
                 }
             }
+        }
 
+        private void FixedUpdate()
+        {
+            if ( animator.GetBool(canMoveParam) )
+            {
+                //Moves character, without letting the rotation to affect movement direction
+                rb2d.MovePosition(rb2d.position + input * movementSpeed * Time.deltaTime);
+            }
         }
 
         private float GetGamepadDirection()
@@ -110,9 +113,9 @@ namespace FlamingApes.Underwater
             Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
             mousePos.z = main.nearClipPlane;
             return main.ScreenToWorldPoint(mousePos);
-        } 
+        }
 
-    //input reading for controls
+        //input reading for controls
         public void Move(InputAction.CallbackContext context)
         {
             input = context.ReadValue<Vector2>();
