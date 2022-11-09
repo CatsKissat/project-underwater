@@ -37,8 +37,6 @@ namespace FlamingApes.Underwater
         { 
             if (enemySensor.IsActive)
             {
-                Debug.Log($"Attacking {enemySensor.ActiveUnit}");
-
                 if (!enemySensor.ActiveUnit.Health.DecreaseHealth(damage))
                 {
                     // Enemy died

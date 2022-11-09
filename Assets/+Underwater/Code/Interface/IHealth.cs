@@ -42,7 +42,5 @@ namespace FlamingApes.Underwater
 		/// </summary>
 		void Reset();
 	}
-
-
 }
 
