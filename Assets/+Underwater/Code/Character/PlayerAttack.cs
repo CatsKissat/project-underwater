@@ -18,6 +18,9 @@ namespace FlamingApes.Underwater
         //boolean for shooting cooldown and amount cooldown is active
         private bool canAttack = true;
 
+        [SerializeField]
+        private UnitSensor enemySensor;
+
         //[SerializeField]
         //private Transform hand;
 
