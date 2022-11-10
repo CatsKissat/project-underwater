@@ -287,7 +287,7 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!43 &489426613
+--- !u!43 &812590411
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -770,7 +770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1309888701606689523, guid: 2fd328ba1cff44a4cb30155bc2d726ae, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7432775138165232635, guid: 2fd328ba1cff44a4cb30155bc2d726ae, type: 3}
       propertyPath: m_RootOrder
