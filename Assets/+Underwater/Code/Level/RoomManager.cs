@@ -22,6 +22,9 @@ namespace FlamingApes.Underwater
         [SerializeField] private TileBase doorTile;
         [SerializeField] BoundsInt roomArea;
 
+        // Generating layout
+        [SerializeField] private GameObject layoutSpawnPoint;
+
         private void Awake()
         {
             //DisableRoomSpawnPoints();
@@ -90,7 +93,7 @@ namespace FlamingApes.Underwater
             ChangeCorrectTiles(spotForWallTile, wallTile);
 
             // Check for door spots and changes them to a door tiles.
-            ChangeCorrectTiles(spotForDoorTile, doorTile);
+            //ChangeCorrectTiles(spotForDoorTile, doorTile);
         }
 
         private void ChangeCorrectTiles(Tile spotTile, TileBase TileToUse)
@@ -112,7 +115,7 @@ namespace FlamingApes.Underwater
         {
             // Spawn room layout (aka obstacles, spawn points and other predetermined things from a list of roomLayouts).
             int randomizedLayout = Random.Range(0, roomLayouts.Length);
-            Instantiate(roomLayouts[randomizedLayout], transform.position, Quaternion.identity);
+            Instantiate(roomLayouts[randomizedLayout], layoutSpawnPoint.transform.position, Quaternion.identity);
         }
 
         internal void SetRoomConnections()

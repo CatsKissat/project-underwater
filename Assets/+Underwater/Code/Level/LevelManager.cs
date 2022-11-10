@@ -91,7 +91,7 @@ namespace FlamingApes.Underwater
                 RoomManager roomManager = rooms[i].GetComponent<RoomManager>();
                 // NOTE: Disabled this for now to faster iteration
                 // TODO: Enable later when generating doors and walls automatically
-                //roomManager.SpawnWalls();
+                roomManager.SpawnWalls();
                 roomManager.SpawnRoomLayout();
                 roomManager.SpawnExit();
             }
