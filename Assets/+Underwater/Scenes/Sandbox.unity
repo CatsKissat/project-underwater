@@ -287,7 +287,7 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!43 &812590411
+--- !u!43 &876621176
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -750,10 +750,6 @@ PrefabInstance:
     - target: {fileID: 2219703947679314710, guid: 708961a28099db744a020d81dda0160e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2219703947679314711, guid: 708961a28099db744a020d81dda0160e, type: 3}
-      propertyPath: orthographic size
-      value: 4.5583334
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708961a28099db744a020d81dda0160e, type: 3}
