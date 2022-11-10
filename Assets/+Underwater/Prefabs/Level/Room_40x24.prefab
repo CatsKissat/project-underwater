@@ -13455,6 +13455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomLayouts:
+  - {fileID: 1309888701606689523, guid: 2fd328ba1cff44a4cb30155bc2d726ae, type: 3}
   - {fileID: 503789719263961693, guid: de5292b75e4fe8d4a88a342068ad3841, type: 3}
   adjacentRoomSpots:
   - {fileID: 4213036435730272527}
