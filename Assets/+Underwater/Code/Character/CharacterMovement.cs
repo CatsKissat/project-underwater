@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FlamingApes.Underwater.States;
 
 namespace FlamingApes.Underwater
 {
@@ -145,6 +146,14 @@ namespace FlamingApes.Underwater
             else
             {
                 animator.SetBool(isRunningParam, false);
+            }
+        }
+
+        public void Pause(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                GameStateManager.Instance.Go(StateType.Options);
             }
         }
 
