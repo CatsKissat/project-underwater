@@ -8,6 +8,8 @@ namespace FlamingApes.Underwater
 {
     public class CharacterMovement : MonoBehaviour
     {
+        public static CharacterMovement Instance { get; private set; }
+
         //references for rotation for aiming at mouse and keyboard
         private Camera main;
 
@@ -40,6 +42,15 @@ namespace FlamingApes.Underwater
 
         private void Awake()
         {
+            if ( Instance != null )
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+            }
+
             weaponParent = GetComponentInChildren<WeaponParent>();
         }
 
