@@ -2239,7 +2239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4878213508099492319}
   m_Layer: 0
-  m_Name: RoomLayout_40x24_Room2
+  m_Name: RoomLayout_40x24_Room_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
