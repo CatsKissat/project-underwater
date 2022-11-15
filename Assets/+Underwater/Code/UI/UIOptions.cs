@@ -6,14 +6,14 @@ namespace FlamingApes.Underwater.States
 {
 	public class UIOptions : MonoBehaviour
 	{
-		/*[SerializeField]
+		[SerializeField]
 		private UIVolumeControl masterVolume;
 
 		[SerializeField]
 		private UIVolumeControl musicVolume;
 
 		[SerializeField]
-		private UIVolumeControl sfxVolume;*/
+		private UIVolumeControl sfxVolume;
 
 		[SerializeField]
 		private AudioMixer mixer;
@@ -29,17 +29,17 @@ namespace FlamingApes.Underwater.States
 
 		private void Start()
 		{
-			//masterVolume.Setup(mixer, masterVolumeName);
-			//musicVolume.Setup(mixer, musicVolumeName);
-			//sfxVolume.Setup(mixer, sfxVolumeName);
+			masterVolume.Setup(mixer, masterVolumeName);
+			musicVolume.Setup(mixer, musicVolumeName);
+			sfxVolume.Setup(mixer, sfxVolumeName);
 		}
 
 		public void Save()
 		{
 			Debug.Log("Save options");
-			//masterVolume.Save();
-			//musicVolume.Save();
-			//sfxVolume.Save();
+			masterVolume.Save();
+			musicVolume.Save();
+			sfxVolume.Save();
 		}
 
 		public void Close()
