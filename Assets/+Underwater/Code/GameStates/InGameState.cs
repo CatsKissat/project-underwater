@@ -6,7 +6,7 @@ namespace FlamingApes.Underwater.States
 	{
 		public override string SceneName
 		{
-			get { return "Sandbox"; } //+ LevelIndex; }
+			get { return GameStateManager.Instance.IngameScene; } //+ LevelIndex; }
 		}
 
 		public override StateType Type

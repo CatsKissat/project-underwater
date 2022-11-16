@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using NaughtyAttributes;
 
 namespace FlamingApes.Underwater.States
 {
@@ -35,7 +36,18 @@ namespace FlamingApes.Underwater.States
 			}
 		}
 		#endregion
-		
+		[Scene]
+		[SerializeField]
+		internal string IngameScene;
+
+		[Scene]
+		[SerializeField]
+		internal string MainMenu;
+
+		[Scene]
+		[SerializeField]
+		internal string Options;
+
 		#region Fields
 		private List<GameStateBase> states = new List<GameStateBase>();
 		#endregion
