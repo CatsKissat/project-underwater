@@ -89,12 +89,12 @@ namespace FlamingApes.Underwater.States
 			MainMenuState mainMenu = new MainMenuState();
 			InGameState ingame = new InGameState();
 			OptionsState options = new OptionsState();
-			//GameOverState gameOver = new GameOverState();
+			GameOverState gameOver = new GameOverState();
 
 			states.Add(mainMenu);
 			states.Add(ingame);
 			states.Add(options);
-			//states.Add(gameOver);
+			states.Add(gameOver);
 
 #if UNITY_EDITOR // A pre-processor directive. This code block is removed from the build
 			foreach (GameStateBase state in states)
