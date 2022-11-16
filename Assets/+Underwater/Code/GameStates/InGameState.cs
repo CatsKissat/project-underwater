@@ -17,7 +17,7 @@ namespace FlamingApes.Underwater.States
 		public InGameState() : base()
 		{
 			AddTargetState(StateType.Options);
-			//AddTargetState(StateType.GameOver);
+			AddTargetState(StateType.GameOver);
 			AddTargetState(StateType.InGame);
 		}
 
