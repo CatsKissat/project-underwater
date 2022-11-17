@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5828608950834737333}
   - component: {fileID: 1734997969704233512}
   m_Layer: 0
-  m_Name: LaFiske_0
+  m_Name: LaFiske
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
