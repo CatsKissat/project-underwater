@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 8513508251082109952}
   - component: {fileID: 2400063188537387607}
   - component: {fileID: 2068671612494060451}
+  - component: {fileID: -3561718602680596806}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -159,11 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6161d926f59372a40b90037d98559d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
   rb2D: {fileID: 8513508251082109952}
   fireForce: 25.83
   lifeTime: 5
-  enemySensor: {fileID: 2068671612494060451}
 --- !u!50 &8513508251082109952
 Rigidbody2D:
   serializedVersion: 4
@@ -223,3 +222,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3455d555942de6046b965ea5cd73f61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3561718602680596806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6428361003673664026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21713fee7ad870f40bfa6154887654fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 0
+  damage: 5
