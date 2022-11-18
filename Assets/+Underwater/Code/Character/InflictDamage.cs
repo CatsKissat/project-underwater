@@ -48,71 +48,8 @@ namespace FlamingApes.Underwater
                             targetUnit.Die();
                         }
                     }
-                    
-
-                    /*if (!health.DecreaseHealth(damage))
-                    {
-                        //target died
-                        if (targetUnit != null)
-                        {
-                            targetUnit.Die();
-                        }
-                    }*/
-
-                    Debug.Log("Enemy encountered!");
-
-
-            }
-            
-            else
-
-            {
-                Debug.Log("FRIENLDY");
-            }
-
-        }
-        /*[SerializeField]
-        private int damage = 1;
-
-
-        private enum DamageSource
-        {
-            Player,
-            Enemy
-        }
-
-        [SerializeField] private DamageSource damageSource;
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            IHealth health = collision.GetComponentInChildren<IHealth>();
-            UnitBase targetUnit = collision.GetComponentInChildren<UnitBase>();
-            
-
-            
-            {
-               
-                if (!health.DecreaseHealth(damage))
-                {
-                    //target died
-                    if (targetUnit != null)
-                    {
-                        targetUnit.Die();
-                    }
                 }
             }
-
-           /* if (health != null && damageSource == DamageSource.Enemy && damageTarget == DamageTarget.Player)
-            {
-                if (!health.DecreaseHealth(damage))
-                {
-                    //target died
-                    if (targetUnit != null)
-                    {
-                        targetUnit.Die();
-                    }
-                }
-            }*/
         }
     }
 }
