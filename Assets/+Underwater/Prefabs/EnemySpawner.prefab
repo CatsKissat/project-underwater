@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4428752771843172630}
   - component: {fileID: 5852229018759421293}
   - component: {fileID: 6613947157278141389}
+  - component: {fileID: 8814713275596123487}
+  - component: {fileID: 3668347250521655692}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -116,7 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c15ba5db441124ea1148c89e860d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 210849486338534952, guid: ad0859160ac320c40ab5057f6fa346bc, type: 3}
   spawnCooldown: 2
   enableSpawning: 1
 --- !u!114 &5852229018759421293
@@ -144,3 +145,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5eb4c55886a8fd479c4eab1ae55ae10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8814713275596123487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4428752771843172627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fb4bc336109ff408766af7dae89df8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 210849486338534952, guid: ad0859160ac320c40ab5057f6fa346bc, type: 3}
+  amountToPool: 10
+--- !u!114 &3668347250521655692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4428752771843172627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21713fee7ad870f40bfa6154887654fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 1
+  damage: 0

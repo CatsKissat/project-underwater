@@ -7,7 +7,6 @@ namespace FlamingApes.Underwater
     public interface IAttack
     {
         IEnumerator Attack();
-        int GetDamage { get; }
         float GetAttackRange { get; }
         bool IsAttacking { get; }
     }

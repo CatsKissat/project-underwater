@@ -10,6 +10,8 @@ namespace FlamingApes.Underwater
     {
         public static CharacterMovement Instance { get; private set; }
 
+        [SerializeField] internal Transform enemyTarget;
+
         //references for rotation for aiming at mouse and keyboard
         private Camera main;
 

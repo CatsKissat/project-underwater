@@ -10,7 +10,7 @@ namespace FlamingApes.Underwater
         private Rigidbody2D rb2d;
         private Vector2 direction;
         private float angle;
-        private IAttack attack;
+        private IAttack enemyAttack;
 
         private void Start()
         {
@@ -20,33 +20,34 @@ namespace FlamingApes.Underwater
                 Debug.LogError(name + " is missing " + rb2d.GetType() + " component. Moving requires it!");
             }
 
-            attack = GetComponent<IAttack>();
-            if ( attack == null )
+            enemyAttack = GetComponent<IAttack>();
+            if ( enemyAttack == null )
             {
-                Debug.LogError(name + " is missing " + attack.GetType() + " component. Attacking requires it!");
+                Debug.LogError(name + " is missing " + enemyAttack.GetType() + " component. Attacking requires it!");
             }
         }
 
         private void Update()
         {
-            direction = (CharacterMovement.Instance.transform.position - transform.position).normalized;
+            direction = (CharacterMovement.Instance.enemyTarget.position - transform.position).normalized;
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         }
 
         private void FixedUpdate()
         {
-            float distance = Vector2.Distance(transform.position, CharacterMovement.Instance.transform.position);
-            rb2d.rotation = angle;
-            if ( distance >= attack.GetAttackRange )
+            float distance = Vector2.Distance(transform.position, CharacterMovement.Instance.enemyTarget.position);
+
+            if ( distance >= enemyAttack.GetAttackRange && !enemyAttack.IsAttacking )
             {
+                rb2d.rotation = angle;
                 Move();
             }
             else
             {
                 rb2d.velocity = new Vector3(0.0f, 0.0f);
-                if ( !attack.IsAttacking )
+                if ( !enemyAttack.IsAttacking )
                 {
-                    StartCoroutine(attack.Attack());
+                    StartCoroutine(enemyAttack.Attack());
                 }
             }
         }

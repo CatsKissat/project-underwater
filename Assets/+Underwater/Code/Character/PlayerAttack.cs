@@ -21,14 +21,20 @@ namespace FlamingApes.Underwater
         [SerializeField]
         float shootingCooldown = 1f;
 
+        private ObjectPool objectPool;
+
+        private void Start()
+        {
+            objectPool = GetComponent<ObjectPool>();
+        }
 
         //After CanShoot() numerator sends positive boolean, Shoot() calls bullet pool to set prefab active / visible 
         public void Shoot(InputAction.CallbackContext context)
         {
-            if (!canAttack) return;
+            if ( !canAttack ) return;
             //fetch pooled game object -> the projectile in this case
-            GameObject projectile = ObjectPool.SharedInstance.GetPooledObject();
-            if (projectile != null)
+            GameObject projectile = objectPool.GetPooledObject();
+            if ( projectile != null )
             {
                 projectile.transform.position = firePoint.transform.position;
                 projectile.transform.rotation = firePoint.transform.rotation;
@@ -36,7 +42,6 @@ namespace FlamingApes.Underwater
             }
 
             StartCoroutine(CanShoot());
-
         }
 
         //cooldown for shooting 
