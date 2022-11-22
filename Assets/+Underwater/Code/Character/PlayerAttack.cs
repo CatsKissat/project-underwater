@@ -19,12 +19,6 @@ namespace FlamingApes.Underwater
         private bool canAttack = true;
 
         [SerializeField]
-        private UnitSensor enemySensor;
-
-        //[SerializeField]
-        //private Transform hand;
-
-        [SerializeField]
         float shootingCooldown = 1f;
 
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FlamingApes.Underwater
 {
-	public class Enemy : UnitBase
+	public class EnemyBehaviour : UnitBase
 	{
 		public override void Die()
 		{

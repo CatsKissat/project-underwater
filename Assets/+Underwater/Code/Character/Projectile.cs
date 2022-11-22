@@ -7,10 +7,6 @@ namespace FlamingApes.Underwater
     public class Projectile : MonoBehaviour
     {
         [SerializeField]
-
-        private int damage = 1;
-
-        [SerializeField]
         private Rigidbody2D rb2D;
 
         [SerializeField]
@@ -18,9 +14,6 @@ namespace FlamingApes.Underwater
 
         [SerializeField]
         float lifeTime = 2;
-
-        [SerializeField]
-        private UnitSensor enemySensor;
 
         private void OnEnable()
         {
@@ -35,18 +28,6 @@ namespace FlamingApes.Underwater
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if ( collision.gameObject.GetComponent<Enemy>() != null )
-            {
-                if ( enemySensor.IsActive )
-                {
-                    if ( !enemySensor.ActiveUnit.Health.DecreaseHealth(damage) )
-                    {
-                        // Enemy died
-                        enemySensor.ActiveUnit.Die();
-                    }
-                }
-            }
-
             gameObject.SetActive(false);
         }
     }

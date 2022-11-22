@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/+Underwater/Scenes/Options.unity
     guid: a3737b3022798df47962231f81bba57a
+  - enabled: 1
+    path: Assets/+Underwater/Scenes/GameOver.unity
+    guid: 1e97941ac258e8b4999c396de058440d
   m_configObjects: {}
