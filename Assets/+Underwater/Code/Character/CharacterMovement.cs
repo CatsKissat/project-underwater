@@ -164,7 +164,7 @@ namespace FlamingApes.Underwater
 
         public void Pause(InputAction.CallbackContext context)
         {
-            if(context.phase == InputActionPhase.Performed)
+            if ( context.phase == InputActionPhase.Performed )
             {
                 GameStateManager.Instance.Go(StateType.Options);
             }
