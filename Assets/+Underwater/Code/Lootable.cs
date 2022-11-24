@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using FlamingApes.Underwater.Config;
 
 namespace FlamingApes.Underwater
 {
@@ -18,9 +19,21 @@ namespace FlamingApes.Underwater
         [SerializeField] private int goldAmount;
         [ShowIf(nameof(LootTypeHealth))]
         [SerializeField] private int healAmount;
-
+        private AudioSource openAudio;
         private Health playerHealth;
 
+        [SerializeField]
+        private float destroyObjectDelay = 5;
+
+        private new Collider2D collider;
+    
+        private void Awake()
+        {
+            openAudio = GetComponent<AudioSource>();
+            collider = GetComponent<Collider2D>();
+        }
+
+        
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if ( collision.GetComponent<CharacterMovement>() != null )
@@ -34,14 +47,25 @@ namespace FlamingApes.Underwater
         {
             switch ( lootType )
             {
+
                 case LootType.Gold:
                     GameManager.Instance.Gold = goldAmount;
+                    //Play the aduio sound in audioContainer
+                    if (openAudio != null)
+                    {
+                        AudioManager.PlayClip(openAudio, SoundEffect.PickUpCoin);
+                    }
                     break;
                 case LootType.Health:
                     CharacterMovement.Instance.GetComponent<Health>().IncreaseHealth(healAmount);
+                    /*if (openAudio != null)
+                    
+                    {
+                        AudioManager.PlayClip(openAudio, SoundEffect.HealSoundHere);
+                    }*/
                     break;
             }
-            Destroy(gameObject);
+            Destroy();
         }
 
         public bool LootTypeGold()
@@ -52,6 +76,13 @@ namespace FlamingApes.Underwater
         public bool LootTypeHealth()
         {
             return lootType == LootType.Health ? true : false;
+        }
+
+        private void Destroy()
+        {
+            collider.enabled = false;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(gameObject, destroyObjectDelay);
         }
     }
 }
