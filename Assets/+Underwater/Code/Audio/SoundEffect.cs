@@ -6,7 +6,10 @@ namespace FlamingApes.Underwater.Config
 		PickUpCoin,
 		PickUpHeal,
 		PlayerDamaged,
-		EnemyDamaged
+		EnemyDamaged,
+		PlayerShooting,
+		PlayerMoving,
+		PlayerReload
 	}
 }
 

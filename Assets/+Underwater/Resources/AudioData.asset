@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffects:
   - Type: 1
-    Clip: {fileID: 8300000, guid: 31dbe10ac6ac1324ab8f41f06a16f0f5, type: 3}
+    Clip: {fileID: 0}
+  - Type: 5
+    Clip: {fileID: 8300000, guid: b6cc2f985f8814d4fb1c97f3b25c723f, type: 3}
+  - Type: 7
+    Clip: {fileID: 8300000, guid: 24b8bcf7b192c214fba0ddc4e974a9e2, type: 3}

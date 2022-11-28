@@ -1,3 +1,4 @@
+using FlamingApes.Underwater.Config;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,13 +18,23 @@ namespace FlamingApes.Underwater
         [SerializeField]
         private Transform firePoint;
 
-        //boolean for shooting cooldown and amount cooldown is active
-        private bool canAttack = true;
-
         [SerializeField]
         float shootingCooldown = 1f;
 
+        [SerializeField]
+        private float audioDelay = 1;
+
+        //boolean for shooting cooldown and amount cooldown is active
+        private bool canAttack = true;
+
+        private AudioSource openAudio;
+
         private ObjectPool objectPool;
+        
+        private void Awake()
+        {
+            openAudio = GetComponent<AudioSource>();
+        }
 
         public bool CanAttack { set => canAttack = value; }
 
@@ -61,6 +72,15 @@ namespace FlamingApes.Underwater
             }
 
             StartCoroutine(CanShoot());
+            StartCoroutine(ShootAndReloadAudio());
+
+        }
+
+        IEnumerator ShootAndReloadAudio()
+        {
+            AudioManager.PlayClip(openAudio, SoundEffect.PlayerShooting);
+            yield return new WaitForSeconds(audioDelay);
+            AudioManager.PlayClip(openAudio, SoundEffect.PlayerReload);
         }
 
         //cooldown for shooting 
