@@ -11,23 +11,11 @@ namespace FlamingApes.Underwater
 {
 	public class EnemyBehaviour : UnitBase
 	{
-        public void Start()
-        {
-			StartCoroutine(ScanStarAI());
-        }
-
+        
         public override void Die()
 		{
 			Collider.enabled = false;
 			gameObject.SetActive(false);
-		}
-
-		IEnumerator ScanStarAI()
-{
-			yield return new WaitForSeconds(1);
-			AstarPath.active.Scan();
-			
-
 		}
 	}
 }
