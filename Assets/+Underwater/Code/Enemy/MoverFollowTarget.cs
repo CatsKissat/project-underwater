@@ -6,10 +6,10 @@ namespace FlamingApes.Underwater
 {
     public class MoverFollowTarget : MonoBehaviour, IMover
     {
-        [SerializeField] private float moveSpeed = 4.0f;
+        //[SerializeField] private float moveSpeed = 4.0f;
         private Rigidbody2D rb2d;
-        private Vector2 direction;
-        private float angle;
+        //private Vector2 direction;
+       // private float angle;
         private IAttack enemyAttack;
 
         private void Start()
@@ -29,8 +29,8 @@ namespace FlamingApes.Underwater
 
         private void Update()
         {
-            direction = (CharacterMovement.Instance.enemyTarget.position - transform.position).normalized;
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+           // direction = (CharacterMovement.Instance.enemyTarget.position - transform.position).normalized;
+           // angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         }
 
         private void FixedUpdate()
@@ -39,12 +39,12 @@ namespace FlamingApes.Underwater
 
             if ( distance >= enemyAttack.GetAttackRange && !enemyAttack.IsAttacking )
             {
-                rb2d.rotation = angle;
-                Move();
+                //rb2d.rotation = angle;
+                //Move();
             }
             else
             {
-                rb2d.velocity = new Vector3(0.0f, 0.0f);
+               // rb2d.velocity = new Vector3(0.0f, 0.0f);
                 if ( !enemyAttack.IsAttacking )
                 {
                     StartCoroutine(enemyAttack.Attack());
@@ -54,7 +54,7 @@ namespace FlamingApes.Underwater
 
         public void Move()
         {
-            rb2d.velocity = new Vector2(direction.x * moveSpeed * Time.deltaTime, direction.y * moveSpeed * Time.deltaTime);
+       //     rb2d.velocity = new Vector2(direction.x * moveSpeed * Time.deltaTime, direction.y * moveSpeed * Time.deltaTime);
         }
     }
 }
