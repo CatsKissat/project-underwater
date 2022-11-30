@@ -33,8 +33,10 @@ namespace FlamingApes.Underwater
             {
 #endif
                 GenerateLevel();
+
 #if UNITY_EDITOR
             }
+                StartCoroutine(ScanStarAI());
 #endif
         }
 
@@ -133,6 +135,12 @@ namespace FlamingApes.Underwater
             {
                 Instance = this;
             }
+        }
+
+        IEnumerator ScanStarAI()
+        {
+            AstarPath.active.Scan();
+            yield return null;
         }
     }
 }

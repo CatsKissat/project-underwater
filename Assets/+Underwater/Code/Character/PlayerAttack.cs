@@ -38,6 +38,7 @@ namespace FlamingApes.Underwater
             {
                 projectile.transform.position = firePoint.transform.position;
                 projectile.transform.rotation = firePoint.transform.rotation;
+                projectile.GetComponent<Collider2D>().enabled = true;
                 projectile.SetActive(true);
             }
 

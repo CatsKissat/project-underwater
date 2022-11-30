@@ -20,7 +20,7 @@ namespace FlamingApes.Underwater
         [SerializeField]
         private int damage = 1;
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             IHealth health = collision.gameObject.GetComponentInChildren<IHealth>();
             UnitBase targetUnit = collision.gameObject.GetComponentInChildren<UnitBase>();
@@ -47,7 +47,6 @@ namespace FlamingApes.Underwater
                     }
                 }
             }
-
         }
     }
 }
