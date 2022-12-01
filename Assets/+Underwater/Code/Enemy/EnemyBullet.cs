@@ -16,14 +16,16 @@ namespace FlamingApes.Underwater
         float lifeTime = 2;
 
         private Transform target;
+        private Coroutine destroyCoroutine;
 
-        private void Awake()
+
+        private void Start()
         {
-            target = GameObject.Find("HeroCharacter").transform;          
+            target = CharacterMovement.Instance.enemyTarget;
         }
 
         private void Update()
-        {         
+        {    
             Vector3 vectorToTarget = target.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 180;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -32,6 +34,9 @@ namespace FlamingApes.Underwater
 
         private void OnEnable()
         {
+            destroyCoroutine = StartCoroutine(DestroyProjectile());
+            target = CharacterMovement.Instance.enemyTarget;
+
             Vector2 bulletDirection = (target.transform.position - transform.position).normalized * fireForce;
             bulletRB2D.velocity = new Vector2(bulletDirection.x, bulletDirection.y);
             if (bulletRB2D == null)
@@ -47,14 +52,27 @@ namespace FlamingApes.Underwater
             gameObject.SetActive(false);
         }
 
+        //Set gameObject to false if it collides with walls or terrain
         private void OnCollisionEnter2D(Collision2D collision)
         {
             gameObject.SetActive(false);
+            StopAndNullCoroutine();
+
         }
 
+        //set gameObject to false when it hits players hitbox
         private void OnTriggerEnter2D(Collider2D collision)
         {
             gameObject.SetActive(false);
+            StopAndNullCoroutine();
+        }
+        private void StopAndNullCoroutine()
+        {
+            if (destroyCoroutine != null)
+            {
+                StopCoroutine(DestroyProjectile());
+                destroyCoroutine = null;
+            }
         }
     }
 }

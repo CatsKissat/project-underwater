@@ -28,6 +28,7 @@ namespace FlamingApes.Underwater
         // Start is called before the first frame update
         void Start()
         {
+            target = CharacterMovement.Instance.enemyTarget;
             objectPool = GetComponent<ObjectPool>();
         }
 
@@ -51,14 +52,9 @@ namespace FlamingApes.Underwater
                 enemyBullet.transform.rotation = firePoint.transform.rotation;
                 enemyBullet.GetComponent<Collider2D>().enabled = true;
                 enemyBullet.SetActive(true);
+                StartCoroutine(CanShoot());
             }
-            StartCoroutine(CanShoot());
 
-        }
-
-        void OnEnable()
-        {
-            target = GameObject.Find("HeroCharacter").transform;
         }
 
         IEnumerator CanShoot()
