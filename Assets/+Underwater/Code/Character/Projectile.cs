@@ -18,15 +18,16 @@ namespace FlamingApes.Underwater
         private void OnEnable()
         {
             rb2D.AddForce(-transform.right * fireForce, ForceMode2D.Impulse);
-            Invoke(nameof(Destroy), lifeTime);
+            StartCoroutine(DestroyProjectile());
         }
 
-        private void Destroy()
+        IEnumerator DestroyProjectile()
         {
+            yield return new WaitForSeconds(lifeTime);
             gameObject.SetActive(false);
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
         {
             gameObject.SetActive(false);
         }

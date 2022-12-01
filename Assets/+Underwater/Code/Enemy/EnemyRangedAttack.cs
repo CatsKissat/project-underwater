@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FlamingApes.Underwater
 {
-    public class RangedAttack : MonoBehaviour
+    public class EnemyRangedAttack : MonoBehaviour
     {
         [SerializeField]
         private float shootingRange = 10;

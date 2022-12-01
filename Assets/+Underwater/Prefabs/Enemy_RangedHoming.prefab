@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 3764682486494089476}
   - component: {fileID: 8346355864622776256}
   m_Layer: 7
-  m_Name: Enemy_Ranged
+  m_Name: Enemy_RangedHoming
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6050606, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingRange: 12.21
   firePoint: {fileID: 8064259772636136662}
-  shootingCooldown: 4.77
-  fireRate: 1
+  shootingCooldown: 3
+  fireRate: 2
 --- !u!114 &6414127859458083842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObjects: []
-  objectToPool: {fileID: 3201260667363260175, guid: a93991669afba1e46a9242a7b70caf69, type: 3}
+  objectToPool: {fileID: 3201260667363260175, guid: a18877b729e94784c942effcab1ab47b, type: 3}
   amountToPool: 10
 --- !u!114 &3742786027050265930
 MonoBehaviour:
@@ -349,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3806331735117925496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0.024, y: 0.025, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -381,7 +381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4703801634886309773}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.23, y: 0.4, z: 0}
+  m_LocalPosition: {x: -0.161, y: 0.035, z: 0}
   m_LocalScale: {x: 0.2673, y: 0.2537, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -465,7 +465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6843438704855907856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.24, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0.246, y: 0.035, z: 0}
   m_LocalScale: {x: 0.2673, y: 0.2537, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -33,10 +33,10 @@ namespace FlamingApes.Underwater
             {
 #endif
                 GenerateLevel();
+                StartCoroutine(ScanStarAI());
 
 #if UNITY_EDITOR
             }
-                StartCoroutine(ScanStarAI());
 #endif
         }
 
