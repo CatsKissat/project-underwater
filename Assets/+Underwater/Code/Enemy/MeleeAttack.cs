@@ -36,8 +36,6 @@ namespace FlamingApes.Underwater
         public IEnumerator Attack()
         {
             isAttacking = true;
-            // TODO: Ensure enemy is targeting player before attacking
-            Debug.Log(name + " attacked.");
             hitCollider.enabled = true;
             hitSprite.enabled = true;
             yield return new WaitForSeconds(meleeDuration);
@@ -45,6 +43,18 @@ namespace FlamingApes.Underwater
             hitSprite.enabled = false;
             yield return new WaitForSeconds(attackCooldown);
             isAttacking = false;
+        }
+
+        private void OnEnable()
+        {
+            isAttacking = false;
+            hitCollider.enabled = false;
+            hitSprite.enabled = false;
+        }
+
+        private void OnDisable()
+        {
+            StopCoroutine(Attack());
         }
     }
 }

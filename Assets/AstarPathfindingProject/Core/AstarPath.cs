@@ -880,7 +880,8 @@ public class AstarPath : VersionedMonoBehaviour
 			}
 			else
 			{
-				Debug.Log(debug);
+                // NOTE: Commented this because non-stop editor spam
+				//Debug.Log(debug);
 			}
 		}
 	}
