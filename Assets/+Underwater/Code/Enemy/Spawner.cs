@@ -6,11 +6,15 @@ namespace FlamingApes.Underwater
 {
     public class Spawner : MonoBehaviour
     {
+        [Tooltip("If distance to player is less than this, spawner will spawn enemies.")]
+        [SerializeField] private float spawnDistance = 10.0f;
+
         [Tooltip("Spawn a new enemy after this time has passed (seconds).")]
         [SerializeField] private float spawnCooldown = 2.0f;
 
         private Coroutine spawnerCoroutine;
         private ObjectPool objectPool;
+        private float distanceToPlayer;
 
 #if UNITY_EDITOR
         [Header("Debug")]
@@ -19,7 +23,16 @@ namespace FlamingApes.Underwater
 
         private void OnEnable()
         {
-            spawnerCoroutine = StartCoroutine(SpawnEnemy());
+        }
+
+        private void Update()
+        {
+            distanceToPlayer = (CharacterMovement.Instance.transform.position - transform.position).magnitude;
+
+            if ( distanceToPlayer < spawnDistance && spawnerCoroutine == null )
+            {
+                spawnerCoroutine = StartCoroutine(SpawnEnemy());
+            }
         }
 
         private IEnumerator SpawnEnemy()
@@ -28,9 +41,8 @@ namespace FlamingApes.Underwater
             if ( enableSpawning )
             {
 #endif
+                Debug.Log("Spawn");
                 yield return new WaitForSeconds(spawnCooldown);
-
-                //Instantiate(enemyPrefab, spawnOffset, Quaternion.identity);
 
                 GameObject enemy = objectPool.GetPooledObject();
 
@@ -43,10 +55,9 @@ namespace FlamingApes.Underwater
                     enemy.transform.rotation = transform.rotation;
                     enemy.GetComponent<Collider2D>().enabled = true;
                     enemy.SetActive(true);
-                }
 
-                spawnerCoroutine = null;
-                spawnerCoroutine = StartCoroutine(SpawnEnemy());
+                    spawnerCoroutine = null;
+                }
 #if UNITY_EDITOR
             }
 #endif
@@ -74,6 +85,12 @@ namespace FlamingApes.Underwater
                 StopCoroutine(SpawnEnemy());
                 spawnerCoroutine = null;
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, spawnDistance);
         }
     }
 }
