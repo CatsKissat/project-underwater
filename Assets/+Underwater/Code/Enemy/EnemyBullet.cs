@@ -17,17 +17,21 @@ namespace FlamingApes.Underwater
 
         private Transform target;
 
-        private void Start()
+        private void Awake()
+        {
+            target = GameObject.Find("HeroCharacter").transform;          
+        }
+
+        private void Update()
         {         
             Vector3 vectorToTarget = target.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 180;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * fireForce);            
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * fireForce);                      
         }
 
         private void OnEnable()
         {
-            target = GameObject.Find("HeroCharacter").transform;
             Vector2 bulletDirection = (target.transform.position - transform.position).normalized * fireForce;
             bulletRB2D.velocity = new Vector2(bulletDirection.x, bulletDirection.y);
             if (bulletRB2D == null)
