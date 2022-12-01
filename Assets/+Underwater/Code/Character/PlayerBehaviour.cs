@@ -7,6 +7,7 @@ namespace FlamingApes.Underwater
 {
     public class PlayerBehaviour : UnitBase
     {
+    
         public override void Die()
         {
             Collider.enabled = false;

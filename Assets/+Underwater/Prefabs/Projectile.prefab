@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8513508251082109952}
   - component: {fileID: -3561718602680596806}
   - component: {fileID: 3796186275213934301}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 8513508251082109952}
-  fireForce: 25.83
+  fireForce: 12.45
   lifeTime: 5
 --- !u!50 &8513508251082109952
 Rigidbody2D:
