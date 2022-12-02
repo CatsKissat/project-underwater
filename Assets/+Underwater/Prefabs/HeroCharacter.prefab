@@ -560,9 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd042548f4f63064398a1690db8f4eaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 20
   unit: 1
-  uiElement: {fileID: 0}
 --- !u!114 &1396801054
 MonoBehaviour:
   m_ObjectHideFlags: 0
