@@ -561,6 +561,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  unit: 1
+  uiElement: {fileID: 0}
 --- !u!114 &1396801054
 MonoBehaviour:
   m_ObjectHideFlags: 0

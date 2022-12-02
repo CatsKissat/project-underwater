@@ -1,71 +1,99 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
+using UnityEngine.UI;
+using UnityEngine.Events;
+using System;
 
 namespace FlamingApes.Underwater
 {
-	public class Health : MonoBehaviour, IHealth
-	{
-		private int minHealth;
+    public class Health : MonoBehaviour, IHealth
+    {
+        private enum UnitType
+        {
+            Enemy = 0,
+            Player = 1
+        }
 
-		[SerializeField]
-		private int maxHealth;
+        [SerializeField] private int maxHealth;
+        private int minHealth;
+        private int currentHealth;
 
-		private int currentHealth;
+        // Player HP in UI
+        [SerializeField] private UnitType unit;
+        public UnityAction onHealthChanged;
 
-		public int CurrentHealth
-		{
-			get { return currentHealth; }
-			private set
-			{
-				// Makes sure the currentHealth stays within the defined range
-				currentHealth = Mathf.Clamp(value, MinHealth, MaxHealth);
-			}
-		}
+        public int CurrentHealth
+        {
+            get
+            {
+                return currentHealth;
+            }
+            private set
+            {
+                // Makes sure the currentHealth stays within the defined range
+                currentHealth = Mathf.Clamp(value, MinHealth, MaxHealth);
+            }
+        }
 
-		public int MaxHealth
-		{
-			get { return maxHealth; }
-		}
+        public int MaxHealth
+        {
+            get { return maxHealth; }
+        }
 
-		public int MinHealth
-		{
-			get { return minHealth; }
-		}
+        public int MinHealth
+        {
+            get { return minHealth; }
+        }
 
-        private void Start()
-		{
-			Reset();
-		}
+        private void Awake()
+        {
+            Reset();
+        }
 
-		// Decreases the health.
-		/// </summary>
-		/// <param name="amount">The amount to decrease</param>
-		/// <returns>True, if the object is still alive. False otherwise.</returns>
-		public bool DecreaseHealth(int amount)
-		{
-			if (amount < 0) return CurrentHealth > MinHealth;
+        // Decreases the health.
+        /// </summary>
+        /// <param name="amount">The amount to decrease</param>
+        /// <returns>True, if the object is still alive. False otherwise.</returns>
+        public bool DecreaseHealth(int amount)
+        {
+            if ( amount < 0 ) return CurrentHealth > MinHealth;
 
-			CurrentHealth -= amount;
+            CurrentHealth -= amount;
 
-			return CurrentHealth > MinHealth;
-			
-		}
+            if ( unit == UnitType.Player )
+            {
+                onHealthChanged.Invoke();
+            }
 
-		/// <summary>
-		/// Increases the health.
-		/// </summary>
-		/// <param name="amount">Amount to increase</param>
-		public void IncreaseHealth(int amount)
-		{
-			if (amount < 0) return;
+            return CurrentHealth > MinHealth;
+        }
 
-			CurrentHealth += amount;
-		}
+        /// <summary>
+        /// Increases the health.
+        /// </summary>
+        /// <param name="amount">Amount to increase</param>
+        public void IncreaseHealth(int amount)
+        {
+            if ( amount < 0 ) return;
 
-		public void Reset()
-		{
-			CurrentHealth = maxHealth;
-		}
-	}
+            CurrentHealth += amount;
+
+            if ( unit == UnitType.Player )
+            {
+                onHealthChanged.Invoke();
+            }
+        }
+
+        public void Reset()
+        {
+            CurrentHealth = maxHealth;
+        }
+
+        public void HealthUpdated()
+        {
+
+        }
+    }
 }
