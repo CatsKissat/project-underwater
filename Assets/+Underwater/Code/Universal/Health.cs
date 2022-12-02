@@ -22,7 +22,7 @@ namespace FlamingApes.Underwater
 
         // Player HP in UI
         [SerializeField] private UnitType unit;
-        public UnityAction onDamaged;
+        public UnityAction onHealthChanged;
 
         public int CurrentHealth
         {
@@ -64,8 +64,7 @@ namespace FlamingApes.Underwater
 
             if ( unit == UnitType.Player )
             {
-                Debug.Log("Player damaged");
-                onDamaged.Invoke();
+                onHealthChanged.Invoke();
             }
 
             return CurrentHealth > MinHealth;
@@ -80,6 +79,11 @@ namespace FlamingApes.Underwater
             if ( amount < 0 ) return;
 
             CurrentHealth += amount;
+
+            if ( unit == UnitType.Player )
+            {
+                onHealthChanged.Invoke();
+            }
         }
 
         public void Reset()

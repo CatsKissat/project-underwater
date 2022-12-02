@@ -19,6 +19,8 @@ namespace FlamingApes.Underwater
         [ShowIf(nameof(LootTypeHealth))]
         [SerializeField] private int healAmount;
 
+        private Health playerHealth;
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if ( collision.GetComponent<CharacterMovement>() != null )
@@ -36,8 +38,7 @@ namespace FlamingApes.Underwater
                     GameManager.Instance.SetGold(goldAmount);
                     break;
                 case LootType.Health:
-                    // TODO: Add reference to player heal
-                    Debug.Log("Heal player. Needs a method to call.");
+                    CharacterMovement.Instance.GetComponent<Health>().IncreaseHealth(healAmount);
                     break;
             }
             Destroy(gameObject);

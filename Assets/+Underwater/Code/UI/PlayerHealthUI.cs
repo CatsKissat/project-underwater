@@ -32,6 +32,7 @@ namespace FlamingApes.Underwater
 
         private void CreateEmptyHeart()
         {
+            // TODO: Instead of Destroying and re-Instantiating hearts enable and disable them.
             GameObject heart = Instantiate(heartContainer);
             heart.transform.SetParent(transform);
 
@@ -61,12 +62,12 @@ namespace FlamingApes.Underwater
             //maxHearts = new Image[playerHealth.MaxHealth];
 
             UpdateHealthToUI();
-            //playerHealth.onDamaged += UpdateHealthToUI;
+            playerHealth.onHealthChanged += UpdateHealthToUI;
         }
 
         private void OnDisable()
         {
-            //playerHealth.onDamaged -= UpdateHealthToUI;
+            playerHealth.onHealthChanged -= UpdateHealthToUI;
         }
     }
 }
