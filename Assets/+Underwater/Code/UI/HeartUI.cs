@@ -7,7 +7,7 @@ namespace FlamingApes.Underwater
 {
     public class HeartUI : MonoBehaviour
     {
-        private enum HeartState
+        public enum HeartState
         {
             Empty = 0,
             Half = 1,
@@ -25,7 +25,7 @@ namespace FlamingApes.Underwater
             heartImage = GetComponent<Image>();
         }
 
-        private void UpdateHeartState(HeartState state)
+        internal void UpdateHeartIcon(HeartState state)
         {
             switch ( state )
             {
