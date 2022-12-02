@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/+Underwater/Scenes/MainMenu.unity
     guid: 4f215a5697eab0b4fba1ee52496f797e
   - enabled: 1
-    path: Assets/+Underwater/Scenes/Sandbox.unity
-    guid: cce3191cc90b3724caeb9ad73c2f8f1e
+    path: Assets/+Underwater/Scenes/PlayScene.unity
+    guid: eef7ed819d334a142ae1a433b27fc4c9
   - enabled: 1
     path: Assets/+Underwater/Scenes/Options.unity
     guid: a3737b3022798df47962231f81bba57a
