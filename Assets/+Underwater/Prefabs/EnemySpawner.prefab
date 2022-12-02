@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3668347250521655692}
   - component: {fileID: 3529918698974464493}
   - component: {fileID: 2676826108186746149}
+  - component: {fileID: -2306356431484232445}
   m_Layer: 7
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -223,3 +224,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2306356431484232445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4428752771843172627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.6846075, y: -0.95834446, z: 0}
+  - {x: -0.6608038, y: 0.17878914, z: 0}
+  - {x: 0.62509966, y: 0.16093683, z: 0}
+  - {x: 0.6489029, y: -0.95239353, z: 0}
+  m_ShapePathHash: 2111544493
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 44644
