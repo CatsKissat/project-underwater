@@ -10,7 +10,8 @@ namespace FlamingApes.Underwater.Config
 		PlayerShooting,
 		PlayerMoving,
 		PlayerReload,
-		HitWall
+		HitWall,
+		PlayerDeath
 	}
 }
 
