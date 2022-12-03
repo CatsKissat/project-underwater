@@ -8,7 +8,7 @@ namespace FlamingApes.Underwater
     {
         [SerializeField] private GameObject exitsParent;
 
-        private List<GameObject> possibleExitLocation;
+        private List<GameObject> possibleExitLocation = new List<GameObject>();
 
         private void Awake()
         {
