@@ -111,11 +111,16 @@ namespace FlamingApes.Underwater
             }
         }
 
-        internal void SpawnRoomLayout()
+        internal void SpawnRoomLayout(int roomCount, int index)
         {
             // Spawn room layout (aka obstacles, spawn points and other predetermined things from a list of roomLayouts).
             int randomizedLayout = Random.Range(0, roomLayouts.Length);
-            Instantiate(roomLayouts[randomizedLayout], layoutSpawnPoint.transform.position, Quaternion.identity);
+            GameObject layout = Instantiate(roomLayouts[randomizedLayout], layoutSpawnPoint.transform.position, Quaternion.identity);
+
+            if ( index == (roomCount - 1) )
+            {
+                SpawnExit(layout);
+            }
         }
 
         internal void SetRoomConnections()
@@ -124,9 +129,9 @@ namespace FlamingApes.Underwater
             // NOTE: This probably should happen at the same place where spawning door tiles.
         }
 
-        internal void SpawnExit()
+        internal void SpawnExit(GameObject layout)
         {
-
+            layout.GetComponent<ExitSpawner>().RandomizeExit();
         }
 
         internal void SpawnMonsters()

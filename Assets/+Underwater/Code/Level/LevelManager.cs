@@ -10,7 +10,7 @@ namespace FlamingApes.Underwater
         public static LevelManager Instance { get; private set; }
 
         [SerializeField] private GameObject roomPrefab;
-        [SerializeField] private int roomCount;
+        [SerializeField] private int firstLevelRoomCount;
         [SerializeField] internal List<GameObject> adjacentRoomSlots;
 
 #if UNITY_EDITOR
@@ -40,19 +40,16 @@ namespace FlamingApes.Underwater
 #endif
         }
 
-        // TODO: Remove async when level generating if present 
-        private /*async*/ void GenerateLevel()
+        private void GenerateLevel()
         {
             // Create Level GameObject for the level in Hierarchy.
             GameObject level = new GameObject("Level");
 
-            for ( int i = 0; i < roomCount; i++ )
-            {
-#if UNITY_EDITOR
-                // Add delay to see floor by floor level spawning.
-                //await Task.Delay(delay);
-#endif
+            // Get level and adjust roomcount
+            firstLevelRoomCount += GameManager.Instance.Level;
 
+            for ( int i = 0; i < firstLevelRoomCount; i++ )
+            {
                 // Instantiate room from prefab
                 rooms.Add(Instantiate(roomPrefab, SetSpawnPoint(i).position, Quaternion.identity));
 
@@ -75,7 +72,7 @@ namespace FlamingApes.Underwater
             }
 
             // Debug message for room spawning
-            if ( level.transform.childCount == roomCount )
+            if ( level.transform.childCount == firstLevelRoomCount )
             {
                 Debug.Log("All rooms spawned, great job!");
             }
@@ -94,8 +91,7 @@ namespace FlamingApes.Underwater
                 // NOTE: Disabled this for now to faster iteration
                 // TODO: Enable later when generating doors and walls automatically
                 roomManager.SpawnWalls();
-                roomManager.SpawnRoomLayout();
-                roomManager.SpawnExit();
+                roomManager.SpawnRoomLayout(rooms.Count, i);
             }
 
             // TODO: If time, better exit room:
