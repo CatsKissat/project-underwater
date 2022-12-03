@@ -7,6 +7,8 @@ namespace FlamingApes.Underwater
 {
     public class PlayerAttack : MonoBehaviour
     {
+        public static PlayerAttack Instance { get; private set; }
+
         //shooting related references solely for PlayerCharacter
         [SerializeField]
         private GameObject projectile;
@@ -22,6 +24,22 @@ namespace FlamingApes.Underwater
         float shootingCooldown = 1f;
 
         private ObjectPool objectPool;
+
+        public bool CanAttack { set => canAttack = value; }
+
+        private void Awake()
+        {
+            if ( Instance != null )
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            }
+
+            CanAttack = true;
+        }
 
         private void Start()
         {

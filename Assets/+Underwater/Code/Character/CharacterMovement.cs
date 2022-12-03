@@ -35,8 +35,6 @@ namespace FlamingApes.Underwater
         private string yAxisParam = "y";
         private string canMoveParam = "canMove";
         private string isRunningParam = "isRunning";
-        private string runLeftParam = "runLeft";
-        private string runDiagonalRightParam = "runDiagonalRight";
         private SpriteRenderer spriteRender;
 
         [SerializeField]
