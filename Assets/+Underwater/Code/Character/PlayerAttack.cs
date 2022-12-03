@@ -26,8 +26,9 @@ namespace FlamingApes.Underwater
 
         //boolean for shooting cooldown and amount cooldown is active
         private bool canAttack = true;
-
         private AudioSource openAudio;
+        private Coroutine destroyCoroutineShooting;
+        private Coroutine destroyCoroutineAudio;
 
         private ObjectPool objectPool;
         
@@ -69,10 +70,11 @@ namespace FlamingApes.Underwater
                 projectile.transform.rotation = firePoint.transform.rotation;
                 projectile.GetComponent<Collider2D>().enabled = true;
                 projectile.SetActive(true);
+
+                destroyCoroutineShooting = StartCoroutine(CanShoot());
+                destroyCoroutineAudio =StartCoroutine(ShootAndReloadAudio());
             }
 
-            StartCoroutine(CanShoot());
-            StartCoroutine(ShootAndReloadAudio());
 
         }
 
@@ -90,5 +92,25 @@ namespace FlamingApes.Underwater
             yield return new WaitForSeconds(shootingCooldown);
             canAttack = true;
         }
+
+        private void OnEnable()
+        {
+            canAttack = true;
+        }
+
+        private void OnDisable()
+        {
+            if (destroyCoroutineShooting != null)
+            {
+                StopCoroutine(CanShoot());
+                destroyCoroutineShooting = null;
+            }
+            
+            if(destroyCoroutineAudio != null)
+            {
+                StopCoroutine(ShootAndReloadAudio());
+                destroyCoroutineAudio = null;
+            }
+        }       
     }
 }

@@ -13,42 +13,39 @@ namespace FlamingApes.Underwater
 
         public bool isPlaying;
         public AudioClip[] musicClips;
+        private Coroutine destroyCoroutineAudio;
 
-        private void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-
-            if(instance == null)
-            {
-                instance = this;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
 
         private void Start()
         {
             isPlaying = true;
-            StartCoroutine(PlayMusicLoop());
+            destroyCoroutineAudio = StartCoroutine(PlayMusicLoop());
         }
 
-        IEnumerator PlayMusicLoop ()
+        IEnumerator PlayMusicLoop()
         {
             yield return null;
 
-            while(isPlaying)
+            while (isPlaying)
             {
-                for(int i = 0; i < musicClips.Length; i++)
+                for (int i = 0; i < musicClips.Length; i++)
                 {
                     musicSource.clip = musicClips[i];
                     musicSource.Play();
                 }
-                while(musicSource.isPlaying)
+                while (musicSource.isPlaying)
                 {
                     yield return null;
                 }
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (destroyCoroutineAudio != null)
+            {
+                StopCoroutine(PlayMusicLoop());
+                destroyCoroutineAudio = null;
             }
         }
     }
