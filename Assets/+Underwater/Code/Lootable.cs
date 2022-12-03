@@ -35,7 +35,7 @@ namespace FlamingApes.Underwater
             switch ( lootType )
             {
                 case LootType.Gold:
-                    GameManager.Instance.SetGold(goldAmount);
+                    GameManager.Instance.SetGold = goldAmount;
                     break;
                 case LootType.Health:
                     CharacterMovement.Instance.GetComponent<Health>().IncreaseHealth(healAmount);

@@ -9,6 +9,19 @@ namespace FlamingApes.Underwater
     {
         public static GameManager Instance { get; private set; }
         [ShowNonSerializedField] private int gold;
+        [ShowNonSerializedField] private int currentLevel = 1;
+
+        public int Level
+        {
+            get => currentLevel;
+            set => currentLevel++;
+        }
+
+        public int Gold
+        {
+            get => gold;
+            set => gold += value;
+        }
 
         private void Awake()
         {
@@ -20,12 +33,8 @@ namespace FlamingApes.Underwater
             {
                 Instance = this;
             }
-        }
 
-        public void SetGold(int amount)
-        {
-            gold += amount;
-            Debug.Log("Picked up gold. Current amount is now: " + gold);
+            DontDestroyOnLoad(this);
         }
     }
 }

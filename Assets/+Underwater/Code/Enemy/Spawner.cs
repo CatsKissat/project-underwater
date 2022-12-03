@@ -41,7 +41,6 @@ namespace FlamingApes.Underwater
             if ( enableSpawning )
             {
 #endif
-                Debug.Log("Spawn");
                 yield return new WaitForSeconds(spawnCooldown);
 
                 GameObject enemy = objectPool.GetPooledObject();

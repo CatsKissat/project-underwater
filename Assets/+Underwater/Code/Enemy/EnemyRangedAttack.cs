@@ -42,7 +42,6 @@ namespace FlamingApes.Underwater
         private void Attack()
         {
             GameObject enemyBullet = objectPool.GetPooledObject();
-            Debug.Log("GetPooledObject: " + objectPool.GetPooledObject());
             if ( enemyBullet != null )
             {
                 enemyBullet.transform.position = firePoint.transform.position;
