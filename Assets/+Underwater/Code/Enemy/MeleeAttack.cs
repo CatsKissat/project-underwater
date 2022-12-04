@@ -12,6 +12,7 @@ namespace FlamingApes.Underwater
         [SerializeField] private float attackCooldown = 1.0f;
         [SerializeField] private Collider2D hitCollider;
         [SerializeField] private SpriteRenderer hitSprite;
+        [SerializeField] private Animator animator;
 
         private bool isAttacking = false;
 
@@ -21,6 +22,7 @@ namespace FlamingApes.Underwater
         {
             hitCollider.enabled = false;
             hitSprite.enabled = false;
+            animator = GetComponent<Animator>();
         }
 
         public float GetAttackRange
@@ -38,9 +40,12 @@ namespace FlamingApes.Underwater
             isAttacking = true;
             hitCollider.enabled = true;
             hitSprite.enabled = true;
+            animator.SetTrigger("isAttacking");
+
             yield return new WaitForSeconds(meleeDuration);
             hitCollider.enabled = false;
             hitSprite.enabled = false;
+
             yield return new WaitForSeconds(attackCooldown);
             isAttacking = false;
         }

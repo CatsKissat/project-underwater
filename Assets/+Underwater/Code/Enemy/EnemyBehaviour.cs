@@ -11,7 +11,8 @@ namespace FlamingApes.Underwater
 {
 	public class EnemyBehaviour : UnitBase
 	{
-        
+        [SerializeField] private Animator animator;
+
         public override void Die()
 		{
 			Collider.enabled = false;

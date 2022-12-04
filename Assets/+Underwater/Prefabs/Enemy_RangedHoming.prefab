@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 3764682486494089476}
   - component: {fileID: 8346355864622776256}
   - component: {fileID: 2063411666465910864}
+  - component: {fileID: 3629151123421544470}
   m_Layer: 7
   m_Name: Enemy_RangedHoming
   m_TagString: Untagged
@@ -139,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5eb4c55886a8fd479c4eab1ae55ae10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 2063411666465910864}
 --- !u!114 &-5360659846418943210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +347,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3629151123421544470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000920101031191320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e03415c139c6f04986688502e9cb482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previousPosition: {x: 0, y: 0, z: 0}
+  currentMovementDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &3806331735117925496
 GameObject:
   m_ObjectHideFlags: 0

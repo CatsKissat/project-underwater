@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 8346355864622776256}
   - component: {fileID: -8903572271384317341}
   - component: {fileID: -683720721200208525}
+  - component: {fileID: 4337173599213284528}
   m_Layer: 7
   m_Name: Enemy_Ranged
   m_TagString: Untagged
@@ -442,6 +443,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4337173599213284528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000920101031191320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e03415c139c6f04986688502e9cb482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previousPosition: {x: 0, y: 0, z: 0}
+  currentMovementDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &3806331735117925496
 GameObject:
   m_ObjectHideFlags: 0

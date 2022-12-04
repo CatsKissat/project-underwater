@@ -22,11 +22,13 @@ namespace FlamingApes.Underwater
         private ObjectPool objectPool;
         private bool canAttack = true;
         private Coroutine attackCooldownCoroutine;
+        private Animator animator;
 
         void Start()
         {
             target = CharacterMovement.Instance.enemyTarget;
             objectPool = GetComponent<ObjectPool>();
+            animator = GetComponent<Animator>();
         }
 
         void Update()
@@ -47,8 +49,19 @@ namespace FlamingApes.Underwater
                 enemyBullet.transform.position = firePoint.transform.position;
                 enemyBullet.transform.rotation = firePoint.transform.rotation;
                 enemyBullet.GetComponent<Collider2D>().enabled = true;
-                enemyBullet.GetComponent<EnemyBullet>().enabled = true;
+
+                if ( enemyBullet.GetComponent<EnemyBullet>() != null )
+                {
+                    enemyBullet.GetComponent<EnemyBullet>().enabled = true;
+                }
+
+                if ( enemyBullet.GetComponent<HomingEnemyBullet>() != null )
+                {
+                    enemyBullet.GetComponent<HomingEnemyBullet>().enabled = true;
+                }
+
                 enemyBullet.SetActive(true);
+                animator.SetTrigger("isAttacking");
                 attackCooldownCoroutine = StartCoroutine(CanShoot());
             }
         }
