@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 3764682486494089476}
   - component: {fileID: 8346355864622776256}
   - component: {fileID: -8903572271384317341}
+  - component: {fileID: -683720721200208525}
   m_Layer: 7
   m_Name: Enemy_Ranged
   m_TagString: Untagged
@@ -421,6 +422,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-683720721200208525
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000920101031191320}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7339e2f19a13f4941ba7d55e18f62c30, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3806331735117925496
 GameObject:
   m_ObjectHideFlags: 0
