@@ -1,3 +1,4 @@
+using FlamingApes.Underwater.Config;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +18,17 @@ namespace FlamingApes.Underwater
         [SerializeField]
         private Transform firePoint;
 
-        //boolean for shooting cooldown and amount cooldown is active
-        private bool canAttack = true;
-
         [SerializeField]
         float shootingCooldown = 1f;
+
+        [SerializeField]
+        private float audioDelay = 1;
+
+        //boolean for shooting cooldown and amount cooldown is active
+        private bool canAttack = true;
+        private AudioSource openAudio;
+        private Coroutine destroyCoroutineShooting;
+        private Coroutine destroyCoroutineAudio;
 
         private ObjectPool objectPool;
 
@@ -38,6 +45,7 @@ namespace FlamingApes.Underwater
                 Instance = this;
             }
 
+            openAudio = GetComponent<AudioSource>();
             CanAttack = true;
         }
 
@@ -58,9 +66,17 @@ namespace FlamingApes.Underwater
                 projectile.transform.rotation = firePoint.transform.rotation;
                 projectile.GetComponent<Collider2D>().enabled = true;
                 projectile.SetActive(true);
-            }
 
-            StartCoroutine(CanShoot());
+                destroyCoroutineShooting = StartCoroutine(CanShoot());
+                destroyCoroutineAudio = StartCoroutine(ShootAndReloadAudio());
+            }
+        }
+
+        IEnumerator ShootAndReloadAudio()
+        {
+            AudioManager.PlayClip(openAudio, SoundEffect.PlayerShooting);
+            yield return new WaitForSeconds(audioDelay);
+            AudioManager.PlayClip(openAudio, SoundEffect.PlayerReload);
         }
 
         //cooldown for shooting 
@@ -69,6 +85,26 @@ namespace FlamingApes.Underwater
             canAttack = false;
             yield return new WaitForSeconds(shootingCooldown);
             canAttack = true;
+        }
+
+        private void OnEnable()
+        {
+            canAttack = true;
+        }
+
+        private void OnDisable()
+        {
+            if ( destroyCoroutineShooting != null )
+            {
+                StopCoroutine(CanShoot());
+                destroyCoroutineShooting = null;
+            }
+
+            if ( destroyCoroutineAudio != null )
+            {
+                StopCoroutine(ShootAndReloadAudio());
+                destroyCoroutineAudio = null;
+            }
         }
     }
 }

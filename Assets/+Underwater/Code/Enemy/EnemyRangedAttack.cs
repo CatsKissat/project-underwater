@@ -47,6 +47,7 @@ namespace FlamingApes.Underwater
                 enemyBullet.transform.position = firePoint.transform.position;
                 enemyBullet.transform.rotation = firePoint.transform.rotation;
                 enemyBullet.GetComponent<Collider2D>().enabled = true;
+                enemyBullet.GetComponent<EnemyBullet>().enabled = true;
                 enemyBullet.SetActive(true);
                 attackCooldownCoroutine = StartCoroutine(CanShoot());
             }

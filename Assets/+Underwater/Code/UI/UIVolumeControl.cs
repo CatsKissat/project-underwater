@@ -1,3 +1,4 @@
+using FlamingApes.Underwater.Config;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace FlamingApes.Underwater
+namespace FlamingApes.Underwater.UI
 {
 	public class UIVolumeControl : MonoBehaviour
 	{

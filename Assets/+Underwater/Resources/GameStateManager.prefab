@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ae575bcb5b73d49a83b215d49fd8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IngameScene: Sandbox
+  IngameScene: PlayScene
   MainMenu: MainMenu
   Options: Options

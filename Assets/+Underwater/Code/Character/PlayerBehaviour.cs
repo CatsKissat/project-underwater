@@ -12,7 +12,7 @@ namespace FlamingApes.Underwater
         {
             PlayerAttack.Instance.CanAttack = false;
             Collider.enabled = false;
-            gameObject.SetActive(false);
+            gameObject.SetActive(false);           
             GameStateManager.Instance.Go(StateType.GameOver);
         }
     }

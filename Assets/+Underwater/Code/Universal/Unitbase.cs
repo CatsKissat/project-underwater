@@ -9,8 +9,11 @@ namespace FlamingApes.Underwater
 			private IHealth health;
 			public IHealth Health { get { return health; } }
 			public Collider2D Collider { get; private set; }
+			private new AudioSource audio;
 
-			protected virtual void Awake()
+
+
+		protected virtual void Awake()
 			{
 				health = GetComponent<IHealth>();
 				if (health == null)
