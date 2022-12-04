@@ -6,8 +6,6 @@ namespace FlamingApes.Underwater
 {
     public class EnemyMoveAnimations : MonoBehaviour
     {
-        [SerializeField] private bool areAnimationsFlipped;
-
         private Animator animator;
 
         private void Awake()

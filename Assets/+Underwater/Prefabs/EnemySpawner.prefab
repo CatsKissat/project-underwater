@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c15ba5db441124ea1148c89e860d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDistance: 10
+  spawnDistance: 20
   spawnCooldown: 2
   possibleEnemies:
   - {fileID: 210849486338534952, guid: ad0859160ac320c40ab5057f6fa346bc, type: 3}
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5eb4c55886a8fd479c4eab1ae55ae10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!114 &8814713275596123487
 MonoBehaviour:
   m_ObjectHideFlags: 0

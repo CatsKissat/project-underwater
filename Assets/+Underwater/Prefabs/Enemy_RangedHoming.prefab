@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 8346355864622776256}
   - component: {fileID: 2063411666465910864}
   - component: {fileID: 3629151123421544470}
+  - component: {fileID: 191331300}
   m_Layer: 7
   m_Name: Enemy_RangedHoming
   m_TagString: Untagged
@@ -359,8 +360,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e03415c139c6f04986688502e9cb482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previousPosition: {x: 0, y: 0, z: 0}
-  currentMovementDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &191331300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000920101031191320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.29481888, y: -0.7092633, z: 0}
+  - {x: -0.04407692, y: -0.255785, z: 0}
+  - {x: 0.19751549, y: -0.22969437, z: 0}
+  - {x: 0.36376572, y: -0.7060394, z: 0}
+  m_ShapePathHash: -334050315
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -308818
 --- !u!1 &3806331735117925496
 GameObject:
   m_ObjectHideFlags: 0

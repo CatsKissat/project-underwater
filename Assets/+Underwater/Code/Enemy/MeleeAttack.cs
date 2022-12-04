@@ -11,17 +11,13 @@ namespace FlamingApes.Underwater
         [SerializeField] private float meleeDuration = 0.2f;
         [SerializeField] private float attackCooldown = 1.0f;
         [SerializeField] private Collider2D hitCollider;
-        [SerializeField] private SpriteRenderer hitSprite;
-        [SerializeField] private Animator animator;
 
+        private Animator animator;
         private bool isAttacking = false;
-
-        // TODO: Visualize melee range in editor with a gizmo
 
         private void Awake()
         {
             hitCollider.enabled = false;
-            hitSprite.enabled = false;
             animator = GetComponent<Animator>();
         }
 
@@ -39,12 +35,10 @@ namespace FlamingApes.Underwater
         {
             isAttacking = true;
             hitCollider.enabled = true;
-            hitSprite.enabled = true;
             animator.SetTrigger("isAttacking");
 
             yield return new WaitForSeconds(meleeDuration);
             hitCollider.enabled = false;
-            hitSprite.enabled = false;
 
             yield return new WaitForSeconds(attackCooldown);
             isAttacking = false;
@@ -54,7 +48,6 @@ namespace FlamingApes.Underwater
         {
             isAttacking = false;
             hitCollider.enabled = false;
-            hitSprite.enabled = false;
         }
 
         private void OnDisable()
