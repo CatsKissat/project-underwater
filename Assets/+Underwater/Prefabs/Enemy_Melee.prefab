@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 4971304489734027199}
   - component: {fileID: 210849486338534954}
   - component: {fileID: 1123642566238359384}
+  - component: {fileID: 981424283503326633}
   m_Layer: 7
   m_Name: Enemy_Melee
   m_TagString: Untagged
@@ -110,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  unit: 0
 --- !u!114 &210849486338534958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +336,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &981424283503326633
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210849486338534952}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7fe9124db661c2640859a999ca328a59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2914666986785912031
 GameObject:
   m_ObjectHideFlags: 0
