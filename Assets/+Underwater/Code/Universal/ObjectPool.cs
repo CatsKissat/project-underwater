@@ -6,14 +6,14 @@ namespace FlamingApes.Underwater
 {
     public class ObjectPool : MonoBehaviour
     {
-        [SerializeField]
-        private List<GameObject> pooledObjects;
+        [SerializeField] private List<GameObject> pooledObjects;
+        [SerializeField] private GameObject objectToPool;
+        [SerializeField] private int amountToPool;
 
-        [SerializeField]
-        private GameObject objectToPool;
-
-        [SerializeField]
-        private int amountToPool;
+        public void SetPoolObject(GameObject poolObject)
+        {
+            objectToPool = poolObject;
+        }
 
         void Start()
         {

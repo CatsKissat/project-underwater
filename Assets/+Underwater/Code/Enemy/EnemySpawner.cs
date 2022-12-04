@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace FlamingApes.Underwater
 {
-    public class Spawner : MonoBehaviour
+    public class EnemySpawner : MonoBehaviour
     {
         [Tooltip("If distance to player is less than this, spawner will spawn enemies.")]
         [SerializeField] private float spawnDistance = 10.0f;
 
         [Tooltip("Spawn a new enemy after this time has passed (seconds).")]
         [SerializeField] private float spawnCooldown = 2.0f;
+        [SerializeField] private List<GameObject> possibleEnemies;
 
         private Coroutine spawnerCoroutine;
         private ObjectPool objectPool;
@@ -20,11 +21,6 @@ namespace FlamingApes.Underwater
         [Header("Debug")]
         [SerializeField] private bool enableSpawning = true;
 #endif
-
-        private void OnEnable()
-        {
-        }
-
         private void Update()
         {
             distanceToPlayer = (CharacterMovement.Instance.transform.position - transform.position).magnitude;
@@ -62,9 +58,17 @@ namespace FlamingApes.Underwater
 #endif
         }
 
-        private void Start()
+        private void Awake()
+        {
+            RandomizeEnemy();
+        }
+
+        private void RandomizeEnemy()
         {
             objectPool = GetComponent<ObjectPool>();
+
+            int enemyIndex = Random.Range(0, possibleEnemies.Count);
+            objectPool.SetPoolObject(possibleEnemies[enemyIndex]);
         }
 
         private void OnDisable()

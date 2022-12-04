@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  unit: 0
 --- !u!114 &8230594997547628975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +183,7 @@ MonoBehaviour:
   version: 5
   radius: 0.74
   height: 2
-  canMove: 1
+  canMove: 0
   maxSpeed: 3
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:

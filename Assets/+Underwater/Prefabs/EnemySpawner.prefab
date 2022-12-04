@@ -123,6 +123,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnDistance: 10
   spawnCooldown: 2
+  possibleEnemies:
+  - {fileID: 210849486338534952, guid: ad0859160ac320c40ab5057f6fa346bc, type: 3}
+  - {fileID: 2000920101031191320, guid: 007e0241c67e5a74fa7affc2f4dedd62, type: 3}
   enableSpawning: 1
 --- !u!114 &5852229018759421293
 MonoBehaviour:
@@ -137,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  unit: 0
 --- !u!114 &6613947157278141389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObjects: []
-  objectToPool: {fileID: 2000920101031191320, guid: 007e0241c67e5a74fa7affc2f4dedd62, type: 3}
+  objectToPool: {fileID: 0}
   amountToPool: 10
 --- !u!114 &3668347250521655692
 MonoBehaviour:
