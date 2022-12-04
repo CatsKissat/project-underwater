@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FlamingApes.Underwater
+namespace FlamingApes.Underwater.Config
 {
 	public static class AudioManager
 	{

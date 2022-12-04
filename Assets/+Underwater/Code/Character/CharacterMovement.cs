@@ -25,6 +25,7 @@ namespace FlamingApes.Underwater
         private Vector2 input;
         private WeaponParent weaponParent;
         private Rigidbody2D rb2d;
+        private AudioSource openAudio;
 
         //player movement references
 
@@ -42,6 +43,7 @@ namespace FlamingApes.Underwater
 
         private void Awake()
         {
+            
             if ( Instance != null )
             {
                 Destroy(gameObject);
@@ -50,7 +52,7 @@ namespace FlamingApes.Underwater
             {
                 Instance = this;
             }
-
+            openAudio = GetComponent<AudioSource>();
             weaponParent = GetComponentInChildren<WeaponParent>();
         }
 
@@ -70,7 +72,7 @@ namespace FlamingApes.Underwater
             rb2d = GetComponent<Rigidbody2D>();
         }
 
-
+       
         void Update()
         {
             if ( animator.GetCurrentAnimatorStateInfo(0).IsName(xSpawnParam) )
@@ -130,6 +132,32 @@ namespace FlamingApes.Underwater
         public void Move(InputAction.CallbackContext context)
         {
             input = context.ReadValue<Vector2>();
+            bool isMoving = false;
+
+            if (input.magnitude > 0.1)
+            {
+                isMoving = true;
+            }
+
+            else
+            {
+                isMoving = false;
+            }
+
+                if(isMoving) 
+                {
+                    if(!openAudio.isPlaying)
+                    {
+                        openAudio.loop = true;
+                        openAudio.Play();
+                    }
+
+                }
+
+                else
+                {
+                    openAudio.loop = false;
+                }
 
             // Animations
             if ( input.magnitude > 0.1 )

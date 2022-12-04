@@ -13,7 +13,7 @@ namespace FlamingApes.Underwater
 
         private bool isGamepadActive;
 
-        void Update()
+        void FixedUpdate()
         {
             if ( isGamepadActive )
             {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using System.Collections;
 
-namespace FlamingApes.Underwater.States
+namespace FlamingApes.Underwater.UI
 {
 	public class UIOptions : MonoBehaviour
 	{

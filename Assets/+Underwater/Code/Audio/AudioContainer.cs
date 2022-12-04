@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FlamingApes.Underwater
+namespace FlamingApes.Underwater.Config
 {
 	[CreateAssetMenu(fileName = "AudioData", menuName = "Data/AudioContainer")]
 	public class AudioContainer : ScriptableObject
