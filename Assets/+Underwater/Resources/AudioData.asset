@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundEffects:
   - Type: 1
-    Clip: {fileID: 8300000, guid: 0dc2007838a1138469b1f6cd0f92de75, type: 3}
+    Clip: {fileID: 8300000, guid: bd0843fb61aeee54488448301902dc22, type: 3}
   - Type: 5
     Clip: {fileID: 8300000, guid: b6cc2f985f8814d4fb1c97f3b25c723f, type: 3}
   - Type: 7
@@ -22,6 +22,8 @@ MonoBehaviour:
   - Type: 8
     Clip: {fileID: 8300000, guid: 9793d1431653ed046a3f0a3c24a71c4e, type: 3}
   - Type: 4
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: bedda81915f01014fa1d42c9e83298cb, type: 3}
   - Type: 9
     Clip: {fileID: 8300000, guid: 86996246cffa30241abfea273b9a1a4c, type: 3}
+  - Type: 3
+    Clip: {fileID: 8300000, guid: 1c25dba799128c7469315625c0f328f9, type: 3}

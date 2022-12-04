@@ -1,3 +1,4 @@
+using FlamingApes.Underwater.Config;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,12 +17,16 @@ namespace FlamingApes.Underwater
         float lifeTime = 2;
 
         private Transform target;
-        private Coroutine destroyCoroutine;
-
+        private AudioSource openAudio;       
+        private Coroutine destroyCoroutinePlayerHit;
+        private Coroutine destroyCoroutineDestroyProjectile;
+        private Coroutine destroyCoroutineWallHit;
+        private new Collider2D collider;
 
         private void Start()
         {
             target = CharacterMovement.Instance.enemyTarget;
+            openAudio = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -34,7 +39,10 @@ namespace FlamingApes.Underwater
 
         private void OnEnable()
         {
-            destroyCoroutine = StartCoroutine(DestroyProjectile());
+            collider = GetComponent<Collider2D>();
+            gameObject.SetActive(true);
+            collider.enabled = true;
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
             target = CharacterMovement.Instance.enemyTarget;
 
             Vector2 bulletDirection = (target.transform.position - transform.position).normalized * fireForce;
@@ -43,7 +51,8 @@ namespace FlamingApes.Underwater
             {
                 Debug.LogError(name + " is missing " + bulletRB2D.GetType() + " component. Moving requires it!");
             }
-            StartCoroutine(DestroyProjectile());
+
+            destroyCoroutineDestroyProjectile = StartCoroutine(DestroyProjectile());
         }
 
         IEnumerator DestroyProjectile()
@@ -52,27 +61,56 @@ namespace FlamingApes.Underwater
             gameObject.SetActive(false);
         }
 
+        private void OnDisable()
+        {
+            if (destroyCoroutineWallHit != null)
+            {
+                StopCoroutine(WallHit());
+                destroyCoroutineWallHit = null;
+            }
+
+            if (destroyCoroutinePlayerHit != null)
+            {
+                StopCoroutine(PlayerHit());
+                destroyCoroutinePlayerHit = null;
+            }
+
+            if (destroyCoroutineDestroyProjectile != null)
+            {
+                StopCoroutine(DestroyProjectile());
+                destroyCoroutineDestroyProjectile = null;
+            }
+        }  
+        
+        IEnumerator PlayerHit()
+        {
+            AudioManager.PlayClip(openAudio, SoundEffect.PlayerDamaged);
+            collider.enabled = false;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(1);
+            gameObject.SetActive(false);
+        }
+
+        IEnumerator WallHit()
+        {
+            //AudioManager.PlayClip(openAudio, SoundEffect.HitWall);
+            collider.enabled = false;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(1);
+            gameObject.SetActive(false);
+        }
+
         //Set gameObject to false if it collides with walls or terrain
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            gameObject.SetActive(false);
-            StopAndNullCoroutine();
-
+            destroyCoroutineWallHit = StartCoroutine(WallHit());
         }
 
         //set gameObject to false when it hits players hitbox
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            gameObject.SetActive(false);
-            StopAndNullCoroutine();
+            destroyCoroutinePlayerHit = StartCoroutine(PlayerHit());          
         }
-        private void StopAndNullCoroutine()
-        {
-            if (destroyCoroutine != null)
-            {
-                StopCoroutine(DestroyProjectile());
-                destroyCoroutine = null;
-            }
-        }
+
     }
 }

@@ -78,7 +78,7 @@ namespace FlamingApes.Underwater
 
         IEnumerator EnemyHit()
         {
-            AudioManager.PlayClip(openAudio, SoundEffect.HitWall);
+            AudioManager.PlayClip(openAudio, SoundEffect.EnemyDamaged);
             collider.enabled = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             yield return new WaitForSeconds(1);
