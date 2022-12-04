@@ -58,11 +58,11 @@ namespace FlamingApes.Underwater
                     break;
                 case LootType.Health:
                     CharacterMovement.Instance.GetComponent<Health>().IncreaseHealth(healAmount);
-                    /*if (openAudio != null)
+                    if (openAudio != null)
                     
                     {
-                        AudioManager.PlayClip(openAudio, SoundEffect.HealSoundHere);
-                    }*/
+                        AudioManager.PlayClip(openAudio, SoundEffect.PickUpHeal);
+                    }
                     break;
             }
             Destroy();
