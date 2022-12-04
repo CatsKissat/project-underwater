@@ -16,6 +16,7 @@ namespace FlamingApes.Underwater
         [SerializeField]
         float lifeTime = 2;
 
+        private SpriteRenderer spriteRenderer;
         private AudioSource openAudio;
         private new Collider2D collider;
         private Coroutine destroyCoroutineWallHit;
@@ -28,13 +29,14 @@ namespace FlamingApes.Underwater
         {
             openAudio = GetComponent<AudioSource>();
             collider = GetComponent<Collider2D>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void OnEnable()
         {
             gameObject.SetActive(true);
             collider.enabled = true;
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            spriteRenderer.enabled = true;         
             rb2D.AddForce(-transform.right * fireForce, ForceMode2D.Impulse);
             
             destroyCoroutineDestroyProjectile = StartCoroutine(DestroyProjectile());          
