@@ -31,11 +31,6 @@ namespace FlamingApes.Underwater
         private Coroutine destroyCoroutineAudio;
 
         private ObjectPool objectPool;
-        
-        private void Awake()
-        {
-            openAudio = GetComponent<AudioSource>();
-        }
 
         public bool CanAttack { set => canAttack = value; }
 
@@ -50,6 +45,7 @@ namespace FlamingApes.Underwater
                 Instance = this;
             }
 
+            openAudio = GetComponent<AudioSource>();
             CanAttack = true;
         }
 
@@ -72,10 +68,8 @@ namespace FlamingApes.Underwater
                 projectile.SetActive(true);
 
                 destroyCoroutineShooting = StartCoroutine(CanShoot());
-                destroyCoroutineAudio =StartCoroutine(ShootAndReloadAudio());
+                destroyCoroutineAudio = StartCoroutine(ShootAndReloadAudio());
             }
-
-
         }
 
         IEnumerator ShootAndReloadAudio()
@@ -100,17 +94,17 @@ namespace FlamingApes.Underwater
 
         private void OnDisable()
         {
-            if (destroyCoroutineShooting != null)
+            if ( destroyCoroutineShooting != null )
             {
                 StopCoroutine(CanShoot());
                 destroyCoroutineShooting = null;
             }
-            
-            if(destroyCoroutineAudio != null)
+
+            if ( destroyCoroutineAudio != null )
             {
                 StopCoroutine(ShootAndReloadAudio());
                 destroyCoroutineAudio = null;
             }
-        }       
+        }
     }
 }

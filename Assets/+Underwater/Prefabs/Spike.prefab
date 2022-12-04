@@ -162,6 +162,7 @@ MonoBehaviour:
   bulletRB2D: {fileID: -1132271185281425211}
   fireForce: 13.2
   lifeTime: 4
+  spriteRenderer: {fileID: 4774205392904499622}
 --- !u!114 &5149584503104021551
 MonoBehaviour:
   m_ObjectHideFlags: 0

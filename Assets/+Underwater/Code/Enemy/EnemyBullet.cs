@@ -7,35 +7,30 @@ namespace FlamingApes.Underwater
 {
     public class EnemyBullet : MonoBehaviour
     {
-        [SerializeField]
-        private Rigidbody2D bulletRB2D;
-
-        [SerializeField]
-        float fireForce = 20f;
-
-        [SerializeField]
-        float lifeTime = 2;
+        [SerializeField] private Rigidbody2D bulletRB2D;
+        [SerializeField] float fireForce = 20f;
+        [SerializeField] float lifeTime = 2;
+        [SerializeField] private SpriteRenderer spriteRenderer;
 
         private Transform target;
-        private AudioSource openAudio;       
+        private AudioSource openAudio;
         private Coroutine destroyCoroutinePlayerHit;
         private Coroutine destroyCoroutineDestroyProjectile;
         private Coroutine destroyCoroutineWallHit;
         private new Collider2D collider;
-        private SpriteRenderer spriteRenderer;
 
-        private void Start()
+        private void Awake()
         {
             target = CharacterMovement.Instance.enemyTarget;
             openAudio = GetComponent<AudioSource>();
         }
 
         private void Update()
-        {    
+        {
             Vector3 vectorToTarget = target.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 180;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * fireForce);                      
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * fireForce);
         }
 
         private void OnEnable()
@@ -48,7 +43,7 @@ namespace FlamingApes.Underwater
 
             Vector2 bulletDirection = (target.transform.position - transform.position).normalized * fireForce;
             bulletRB2D.velocity = new Vector2(bulletDirection.x, bulletDirection.y);
-            if (bulletRB2D == null)
+            if ( bulletRB2D == null )
             {
                 Debug.LogError(name + " is missing " + bulletRB2D.GetType() + " component. Moving requires it!");
             }
@@ -64,25 +59,25 @@ namespace FlamingApes.Underwater
 
         private void OnDisable()
         {
-            if (destroyCoroutineWallHit != null)
+            if ( destroyCoroutineWallHit != null )
             {
                 StopCoroutine(WallHit());
                 destroyCoroutineWallHit = null;
             }
 
-            if (destroyCoroutinePlayerHit != null)
+            if ( destroyCoroutinePlayerHit != null )
             {
                 StopCoroutine(PlayerHit());
                 destroyCoroutinePlayerHit = null;
             }
 
-            if (destroyCoroutineDestroyProjectile != null)
+            if ( destroyCoroutineDestroyProjectile != null )
             {
                 StopCoroutine(DestroyProjectile());
                 destroyCoroutineDestroyProjectile = null;
             }
-        }  
-        
+        }
+
         IEnumerator PlayerHit()
         {
             AudioManager.PlayClip(openAudio, SoundEffect.PlayerDamaged);
@@ -110,7 +105,7 @@ namespace FlamingApes.Underwater
         //set gameObject to false when it hits players hitbox
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            destroyCoroutinePlayerHit = StartCoroutine(PlayerHit());          
+            destroyCoroutinePlayerHit = StartCoroutine(PlayerHit());
         }
 
     }
