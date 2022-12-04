@@ -22,6 +22,7 @@ namespace FlamingApes.Underwater
         private Coroutine destroyCoroutineDestroyProjectile;
         private Coroutine destroyCoroutineWallHit;
         private new Collider2D collider;
+        private SpriteRenderer spriteRenderer;
 
         private void Start()
         {
@@ -42,7 +43,7 @@ namespace FlamingApes.Underwater
             collider = GetComponent<Collider2D>();
             gameObject.SetActive(true);
             collider.enabled = true;
-            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            spriteRenderer.enabled = true;
             target = CharacterMovement.Instance.enemyTarget;
 
             Vector2 bulletDirection = (target.transform.position - transform.position).normalized * fireForce;
@@ -86,7 +87,7 @@ namespace FlamingApes.Underwater
         {
             AudioManager.PlayClip(openAudio, SoundEffect.PlayerDamaged);
             collider.enabled = false;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            spriteRenderer.enabled = false;
             yield return new WaitForSeconds(1);
             gameObject.SetActive(false);
         }
@@ -95,7 +96,7 @@ namespace FlamingApes.Underwater
         {
             //AudioManager.PlayClip(openAudio, SoundEffect.HitWall);
             collider.enabled = false;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            spriteRenderer.enabled = false;
             yield return new WaitForSeconds(1);
             gameObject.SetActive(false);
         }

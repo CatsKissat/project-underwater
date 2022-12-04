@@ -73,7 +73,7 @@ namespace FlamingApes.Underwater
         {
             AudioManager.PlayClip(openAudio, SoundEffect.HitWall);
             collider.enabled = false;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            spriteRenderer.enabled = false;
             yield return new WaitForSeconds(1);
             gameObject.SetActive(false);
         }
@@ -82,7 +82,7 @@ namespace FlamingApes.Underwater
         {
             AudioManager.PlayClip(openAudio, SoundEffect.EnemyDamaged);
             collider.enabled = false;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            spriteRenderer.enabled = false;
             yield return new WaitForSeconds(1);
             gameObject.SetActive(false);
         }
