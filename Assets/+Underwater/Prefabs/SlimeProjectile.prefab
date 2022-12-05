@@ -163,6 +163,7 @@ MonoBehaviour:
   fireForce: 13.2
   lifeTime: 4
   spriteRenderer: {fileID: 0}
+  glowLight: {fileID: 8651656356982234694}
 --- !u!114 &6650774416299831316
 MonoBehaviour:
   m_ObjectHideFlags: 0

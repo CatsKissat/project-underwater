@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace FlamingApes.Underwater
 {
@@ -18,9 +19,10 @@ namespace FlamingApes.Underwater
         [SerializeField]
         private Transform bullet;
 
+        [SerializeField] private Light2D glowLight;
+
         private Transform target;
         private Coroutine destroyCoroutine;
-
 
         private void Start()
         {
@@ -29,6 +31,7 @@ namespace FlamingApes.Underwater
 
         private void OnEnable()
         {
+            glowLight.enabled = true;
             destroyCoroutine = StartCoroutine(DestroyProjectile());
         }
 
@@ -49,6 +52,7 @@ namespace FlamingApes.Underwater
         {
             yield return new WaitForSeconds(lifeTime);
             gameObject.SetActive(false);
+            glowLight.enabled = false;
         }
 
 
@@ -59,6 +63,7 @@ namespace FlamingApes.Underwater
             if ( collision.gameObject.GetComponent<Lootable>() == null && collision.gameObject.GetComponent<LevelExitZone>() == null )
             {
                 gameObject.SetActive(false);
+                glowLight.enabled = false;
                 StopAndNullCoroutine();
             }
         }
@@ -69,6 +74,7 @@ namespace FlamingApes.Underwater
             if ( collision.gameObject.GetComponent<Lootable>() == null && collision.gameObject.GetComponent<LevelExitZone>() == null )
             {
                 gameObject.SetActive(false);
+                glowLight.enabled = false;
                 StopAndNullCoroutine();
             }
         }

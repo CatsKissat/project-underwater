@@ -2,6 +2,7 @@ using FlamingApes.Underwater.Config;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace FlamingApes.Underwater
 {
@@ -11,6 +12,7 @@ namespace FlamingApes.Underwater
         [SerializeField] float fireForce = 20f;
         [SerializeField] float lifeTime = 2;
         [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Light2D glowLight;
 
         private Transform target;
         private AudioSource openAudio;
@@ -36,6 +38,7 @@ namespace FlamingApes.Underwater
         private void OnEnable()
         {
             collider = GetComponent<Collider2D>();
+            glowLight.enabled = true;
             gameObject.SetActive(true);
             collider.enabled = true;
             spriteRenderer.enabled = true;
@@ -54,6 +57,7 @@ namespace FlamingApes.Underwater
         IEnumerator DestroyProjectile()
         {
             yield return new WaitForSeconds(lifeTime);
+            glowLight.enabled = false;
             gameObject.SetActive(false);
         }
 
@@ -83,6 +87,7 @@ namespace FlamingApes.Underwater
             AudioManager.PlayClip(openAudio, SoundEffect.PlayerDamaged);
             collider.enabled = false;
             spriteRenderer.enabled = false;
+            glowLight.enabled = false;
             yield return new WaitForSeconds(1);
             gameObject.SetActive(false);
         }
@@ -92,6 +97,7 @@ namespace FlamingApes.Underwater
             //AudioManager.PlayClip(openAudio, SoundEffect.HitWall);
             collider.enabled = false;
             spriteRenderer.enabled = false;
+            glowLight.enabled = false;
             yield return new WaitForSeconds(1);
             gameObject.SetActive(false);
         }

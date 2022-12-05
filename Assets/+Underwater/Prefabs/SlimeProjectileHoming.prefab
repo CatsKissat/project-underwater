@@ -177,6 +177,7 @@ MonoBehaviour:
   lifeTime: 5
   rotateSpeed: 300
   bullet: {fileID: 3201260667363260170}
+  glowLight: {fileID: 4912991131048011644}
 --- !u!1 &5643632225035573988
 GameObject:
   m_ObjectHideFlags: 0
