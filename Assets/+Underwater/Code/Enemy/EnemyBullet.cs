@@ -99,13 +99,19 @@ namespace FlamingApes.Underwater
         //Set gameObject to false if it collides with walls or terrain
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            destroyCoroutineWallHit = StartCoroutine(WallHit());
+            if ( collision.gameObject.GetComponent<Lootable>() == null && collision.gameObject.GetComponent<LevelExitZone>() == null )
+            {
+                destroyCoroutineWallHit = StartCoroutine(WallHit());
+            }
         }
 
         //set gameObject to false when it hits players hitbox
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            destroyCoroutinePlayerHit = StartCoroutine(PlayerHit());
+            if ( collision.gameObject.GetComponent<Lootable>() == null && collision.gameObject.GetComponent<LevelExitZone>() == null )
+            {
+                destroyCoroutinePlayerHit = StartCoroutine(PlayerHit());
+            }
         }
 
     }

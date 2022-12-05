@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using FlamingApes.Underwater.Config;
+using UnityEngine.Rendering.Universal;
 
 namespace FlamingApes.Underwater
 {
@@ -82,6 +83,7 @@ namespace FlamingApes.Underwater
         {
             collider.enabled = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<ShadowCaster2D>().enabled = false;
             Destroy(gameObject, destroyObjectDelay);
         }
     }

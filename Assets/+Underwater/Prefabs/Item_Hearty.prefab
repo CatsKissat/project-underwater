@@ -123,6 +123,7 @@ MonoBehaviour:
   lootType: 1
   goldAmount: 1
   healAmount: 2
+  destroyObjectDelay: 5
 --- !u!58 &528306475259399644
 CircleCollider2D:
   m_ObjectHideFlags: 0

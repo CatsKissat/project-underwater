@@ -142,6 +142,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5eb4c55886a8fd479c4eab1ae55ae10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDropLoot: 1
+  loots:
+  - {fileID: 5628442898468917882, guid: a103a7337c8832b41b9e2b22bf754519, type: 3}
+  dropChance: 20
   animator: {fileID: 0}
 --- !u!114 &-5360659846418943210
 MonoBehaviour:

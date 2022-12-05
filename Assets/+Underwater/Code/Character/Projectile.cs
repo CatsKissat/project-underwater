@@ -36,27 +36,27 @@ namespace FlamingApes.Underwater
         {
             gameObject.SetActive(true);
             collider.enabled = true;
-            spriteRenderer.enabled = true;         
+            spriteRenderer.enabled = true;
             rb2D.AddForce(-transform.right * fireForce, ForceMode2D.Impulse);
-            
-            destroyCoroutineDestroyProjectile = StartCoroutine(DestroyProjectile());          
+
+            destroyCoroutineDestroyProjectile = StartCoroutine(DestroyProjectile());
         }
 
         private void OnDisable()
         {
-            if (destroyCoroutineWallHit != null)
+            if ( destroyCoroutineWallHit != null )
             {
                 StopCoroutine(WallHit());
                 destroyCoroutineWallHit = null;
             }
 
-            if (destroyCoroutineEnemyHit != null)
+            if ( destroyCoroutineEnemyHit != null )
             {
                 StopCoroutine(EnemyHit());
                 destroyCoroutineEnemyHit = null;
             }
 
-            if (destroyCoroutineDestroyProjectile != null)
+            if ( destroyCoroutineDestroyProjectile != null )
             {
                 StopCoroutine(DestroyProjectile());
                 destroyCoroutineDestroyProjectile = null;
@@ -89,14 +89,18 @@ namespace FlamingApes.Underwater
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            destroyCoroutineWallHit = StartCoroutine(WallHit());
+            if ( collision.gameObject.GetComponent<Lootable>() == null && collision.gameObject.GetComponent<LevelExitZone>() == null )
+            {
+                destroyCoroutineWallHit = StartCoroutine(WallHit());
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            destroyCoroutineEnemyHit = StartCoroutine(EnemyHit());
+            if ( collision.gameObject.GetComponent<Lootable>() == null && collision.gameObject.GetComponent<LevelExitZone>() == null )
+            {
+                destroyCoroutineEnemyHit = StartCoroutine(EnemyHit());
+            }
         }
-
-
     }
 }

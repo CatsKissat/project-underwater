@@ -42,34 +42,40 @@ namespace FlamingApes.Underwater
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * bulletSpeed);
             StartCoroutine(DestroyProjectile());
         }
-    
+
         // Update is called once per frame
-         
-         IEnumerator DestroyProjectile()
-         {
-             yield return new WaitForSeconds(lifeTime);
-             gameObject.SetActive(false);
-         }
+
+        IEnumerator DestroyProjectile()
+        {
+            yield return new WaitForSeconds(lifeTime);
+            gameObject.SetActive(false);
+        }
 
 
         //Set gameObject to false if it collides with walls or terrain
 
         private void OnCollisionEnter2D(Collision2D collision)
-         {
-             gameObject.SetActive(false);
-            StopAndNullCoroutine();
+        {
+            if ( collision.gameObject.GetComponent<Lootable>() == null && collision.gameObject.GetComponent<LevelExitZone>() == null )
+            {
+                gameObject.SetActive(false);
+                StopAndNullCoroutine();
+            }
         }
 
         //set gameObject to false when it hits players hitbox
         private void OnTriggerEnter2D(Collider2D collision)
-         {
-             gameObject.SetActive(false);
-            StopAndNullCoroutine();
+        {
+            if ( collision.gameObject.GetComponent<Lootable>() == null && collision.gameObject.GetComponent<LevelExitZone>() == null )
+            {
+                gameObject.SetActive(false);
+                StopAndNullCoroutine();
+            }
         }
 
         private void StopAndNullCoroutine()
         {
-            if (destroyCoroutine != null)
+            if ( destroyCoroutine != null )
             {
                 StopCoroutine(DestroyProjectile());
                 destroyCoroutine = null;
